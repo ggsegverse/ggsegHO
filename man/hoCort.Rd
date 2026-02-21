@@ -10,9 +10,10 @@ hoCort()
 A \link[ggseg.formats:ggseg_atlas]{ggseg.formats::ggseg_atlas} object (cortical).
 }
 \description{
-Brain atlas for the Harvard-Oxford cortical parcellation with
-48 regions per hemisphere. Contains 2D polygon geometry for
-\code{\link[ggseg:ggbrain]{ggseg::geom_brain()}}.
+Cortical parcellation with 48 regions per hemisphere from the
+Harvard-Oxford atlas distributed with FSL. Contains 2D polygon
+geometry for \code{\link[ggseg:ggbrain]{ggseg::geom_brain()}} and 3D vertex indices for
+\code{\link[ggseg3d:ggseg3d]{ggseg3d::ggseg3d()}}.
 }
 \examples{
 hoCort()
@@ -20,5 +21,9 @@ hoCort()
 \references{
 Makris, et al. (2006) Schizophrenia research 83(2-3):155-151
 (\doi{10.1016/j.schres.2005.11.020})
+}
+\seealso{
+Other ggseg_atlases: 
+\code{\link{hoSub}()}
 }
 \concept{ggseg_atlases}
