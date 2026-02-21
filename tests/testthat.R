@@ -1,9 +1,4 @@
-
 library(testthat)
-library(ggplot2)
-library(ggseg)
-library(ggseg3d)
+library(ggsegHO)
 
 test_check("ggsegHO")
-
-# covr::zero_coverage(covr::package_coverage("."))
