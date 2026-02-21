@@ -3,3 +3,8 @@
 .RData
 .Ruserdata
 docs/
+data-raw/ho_cort/
+data-raw/ho_cort_cortical/
+data-raw/ho_sub/
+data-raw/ho_sub_lut.txt
+data-raw/ho_sub_with_ref.nii.gz

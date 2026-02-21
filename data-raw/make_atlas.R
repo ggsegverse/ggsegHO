@@ -1,7 +1,10 @@
 devtools::load_all("../../ggsegExtra/")
+# https://neurovault.org/collections/262/
+library(RNifti)
+
+# --- Labels ---
 
 subcortical_labels <- c(
-  "Left Cerebral White Matter",
   "Left Lateral Ventricle",
   "Left Thalamus",
   "Left Caudate",
@@ -11,7 +14,6 @@ subcortical_labels <- c(
   "Left Hippocampus",
   "Left Amygdala",
   "Left Accumbens",
-  "Right Cerebral White Matter",
   "Right Lateral Ventricle",
   "Right Thalamus",
   "Right Caudate",
@@ -73,40 +75,87 @@ cortical_labels <- c(
   "Occipital Pole"
 )
 
-ho_lut <- data.frame(
-  idx = c(
-    1, 3:11,
-    12, 14:21,
-    101:148
-  ),
-  label = c(subcortical_labels, cortical_labels),
-  R = {set.seed(42); sample(50:220, 67, replace = TRUE)},
-  G = {set.seed(43); sample(50:220, 67, replace = TRUE)},
-  B = {set.seed(44); sample(50:220, 67, replace = TRUE)},
-  A = rep(255L, 67),
+set.seed(42)
+n <- length(cortical_labels) + length(subcortical_labels)
+palette_r <- sample(50:220, n, replace = TRUE)
+palette_g <- sample(50:220, n, replace = TRUE)
+palette_b <- sample(50:220, n, replace = TRUE)
+
+# --- Step 1: Cortical atlas from cortical-only NIfTI ---
+# Uses IDs 1-48 (no subcortical contamination on the surface)
+
+cort_lut <- data.frame(
+  idx = 1:48,
+  label = cortical_labels,
+  R = palette_r[seq_along(cortical_labels)],
+  G = palette_g[seq_along(cortical_labels)],
+  B = palette_b[seq_along(cortical_labels)],
+  A = rep(255L, 48),
   stringsAsFactors = FALSE
 )
 
-ho <- create_wholebrain_from_volume(
-  input_volume = "data-raw/HarvardOxford-cort_and_sub-maxprob-thr25-1mm.nii.gz",
-  input_lut = ho_lut,
-  atlas_name = "ho",
+ho_cort <- create_wholebrain_from_volume(
+  input_volume = "data-raw/HarvardOxford-cort-maxprob-thr25-1mm.nii.gz",
+  input_lut = cort_lut,
+  atlas_name = "ho_cort",
   output_dir = "data-raw",
   cortical_labels = cortical_labels,
-  subcortical_labels = subcortical_labels,
   cleanup = FALSE
 )
 
-if (!is.null(ho$cortical)) {
-  .hoCort <- ho$cortical
-  cat("Cortical class:", paste(class(.hoCort), collapse = ", "), "\n")
-  cat("Cortical regions:", nrow(.hoCort$core), "\n")
-}
-if (!is.null(ho$subcortical)) {
-  .hoSub <- ho$subcortical
-  cat("Subcortical class:", paste(class(.hoSub), collapse = ", "), "\n")
-  cat("Subcortical regions:", nrow(.hoSub$core), "\n")
-}
+.hoCort <- ho_cort$cortical
+cat("Cortical class:", paste(class(.hoCort), collapse = ", "), "\n")
+cat("Cortical regions:", nrow(.hoCort$core), "\n")
+
+# --- Step 2: Subcortical atlas from subcortical NIfTI ---
+# Create volume with cortex reference for brain outline
+
+sub_vol <- readNifti("data-raw/HarvardOxford-sub-maxprob-thr25-1mm.nii.gz")
+sub_arr <- as.array(sub_vol)
+
+# Map subcortical IDs: 1=L White Matter, 2=L Cortex, 3=L Ventricle, ...
+# Subcortical labels we want (removing white matter IDs 1,12 and cortex IDs 2,13):
+# ID 3=L Ventricle, 4=L Thalamus, 5=L Caudate, 6=L Putamen, 7=L Pallidum,
+# 8=Brain-Stem, 9=L Hippocampus, 10=L Amygdala, 11=L Accumbens,
+# 14=R Ventricle, 15=R Thalamus, 16=R Caudate, 17=R Putamen, 18=R Pallidum,
+# 19=R Hippocampus, 20=R Amygdala, 21=R Accumbens
+
+# Remap white matter + cortex labels to FS cortex labels for reference geometry
+ref_arr <- sub_arr
+ref_arr[sub_arr == 1L] <- 3L
+ref_arr[sub_arr == 2L] <- 3L
+ref_arr[sub_arr == 12L] <- 42L
+ref_arr[sub_arr == 13L] <- 42L
+
+ref_vol_path <- "data-raw/ho_sub_with_ref.nii.gz"
+writeNifti(asNifti(ref_arr, reference = sub_vol), ref_vol_path)
+
+subcort_ids <- c(3:11, 14:21)
+subcort_lut <- data.frame(
+  idx = subcort_ids,
+  label = subcortical_labels,
+  R = palette_r[length(cortical_labels) + seq_along(subcortical_labels)],
+  G = palette_g[length(cortical_labels) + seq_along(subcortical_labels)],
+  B = palette_b[length(cortical_labels) + seq_along(subcortical_labels)],
+  A = rep(255L, length(subcortical_labels)),
+  stringsAsFactors = FALSE
+)
+
+subcort_lut_path <- "data-raw/ho_sub_lut.txt"
+write_ctab(subcort_lut, subcort_lut_path)
+
+.hoSub <- create_subcortical_from_volume(
+  input_volume = ref_vol_path,
+  input_lut = subcort_lut_path,
+  atlas_name = "ho_sub",
+  output_dir = "data-raw",
+  cleanup = FALSE
+)
+
+cat("Subcortical class:", paste(class(.hoSub), collapse = ", "), "\n")
+cat("Subcortical regions:", nrow(.hoSub$core), "\n")
+
+# --- Save ---
 
 objs <- ls(all.names = TRUE, pattern = "^\\.ho")
 cat("Saving:", objs, "\n")

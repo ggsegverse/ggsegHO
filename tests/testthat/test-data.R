@@ -48,8 +48,8 @@ describe("hoSub atlas", {
     expect_true(ggseg.formats::is_ggseg_atlas(hoSub()))
   })
 
-  it("has 19 core rows", {
-    expect_equal(nrow(hoSub()$core), 19L)
+  it("has 17 core rows", {
+    expect_equal(nrow(hoSub()$core), 17L)
   })
 
   it("renders with ggseg", {
