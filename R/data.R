@@ -10,6 +10,7 @@
 #' (\doi{10.1016/j.schres.2005.11.020})
 #'
 #' @return A [ggseg.formats::ggseg_atlas] object (cortical).
+#' @import ggseg.formats
 #' @export
 #' @examples
 #' hoCort()

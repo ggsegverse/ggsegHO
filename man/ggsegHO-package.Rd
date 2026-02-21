@@ -13,8 +13,8 @@ Harvard-Oxford cortical atlas for the 'ggseg' ecosystem. Provides a unified 'ggs
 \seealso{
 Useful links:
 \itemize{
-  \item \url{https://github.com/ggseg/ggsegHO}
-  \item Report bugs at \url{https://github.com/ggseg/ggsegHO/issues}
+  \item \url{https://github.com/ggsegverse/ggsegHO}
+  \item Report bugs at \url{https://github.com/ggsegverse/ggsegHO/issues}
 }
 
 }
