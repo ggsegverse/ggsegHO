@@ -48,12 +48,12 @@ library(ggplot2)
 
 ggplot() +
   geom_brain(
-    atlas = hoCort,
+    atlas = hoCort(),
     mapping = aes(fill = label),
     position = position_brain(hemi ~ view),
     show.legend = FALSE
   ) +
-  scale_fill_manual(values = hoCort$palette, na.value = "grey") +
+  scale_fill_manual(values = hoCort()$palette, na.value = "grey") +
   theme_void()
 ```
 

@@ -1,11 +1,11 @@
 describe("hoCort atlas", {
   it("is a ggseg_atlas", {
-    expect_s3_class(hoCort, "ggseg_atlas")
-    expect_s3_class(hoCort, "cortical_atlas")
+    expect_s3_class(hoCort(), "ggseg_atlas")
+    expect_s3_class(hoCort(), "cortical_atlas")
   })
 
   it("is valid", {
-    expect_true(ggseg.formats::is_ggseg_atlas(hoCort))
+    expect_true(ggseg.formats::is_ggseg_atlas(hoCort()))
   })
 
   it("renders with ggseg", {
@@ -14,13 +14,13 @@ describe("hoCort atlas", {
     skip_if_not_installed("vdiffr")
     p <- ggplot2::ggplot() +
       ggseg::geom_brain(
-        atlas = hoCort,
+        atlas = hoCort(),
         mapping = ggplot2::aes(fill = label),
         position = ggseg::position_brain(hemi ~ view),
         show.legend = FALSE
       ) +
       ggplot2::scale_fill_manual(
-        values = hoCort$palette,
+        values = hoCort()$palette,
         na.value = "grey"
       ) +
       ggplot2::theme_void()

@@ -14,7 +14,6 @@ Description: Harvard-Oxford cortical atlas for the 'ggseg' ecosystem.
     for use with 'ggseg'.
 License: MIT + file LICENSE
 Encoding: UTF-8
-LazyData: true
 Depends:
     R (>= 3.5),
     ggseg.formats
