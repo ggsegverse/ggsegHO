@@ -1,10 +1,12 @@
 ---
-output: github_document
+format: gfm
 ---
 
-<!-- README.md is generated from README.Rmd. Please edit that file -->
+<!-- README.md is generated from README.qmd. Please edit that file -->
 
-```{r, include = FALSE}
+```{r}
+#| label: setup
+#| include: false
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>",
@@ -29,9 +31,23 @@ Makris, et al. (2006) Schizophrenia research 83(2-3):155-151
 
 ## Installation
 
+We recommend installing the ggseg-atlases through the ggseg
+[r-universe](https://ggseg.r-universe.dev/ui#builds):
+
+```{r}
+#| label: install-r-universe
+#| eval: false
+options(repos = c(
+  ggseg = "https://ggseg.r-universe.dev",
+  CRAN = "https://cloud.r-project.org"
+))
+
+install.packages("ggsegHO")
+```
+
 You can install ggsegHO from [GitHub](https://github.com/) with:
 
-``` r
+```r
 # install.packages("remotes")
 remotes::install_github("ggseg/ggsegHO")
 ```
@@ -39,10 +55,9 @@ remotes::install_github("ggseg/ggsegHO")
 ## Example
 
 ```{r}
+#| label: 2d-plot
+#| fig-height: 10
 library(ggsegHO)
-```
-
-```{r "ggseg", fig.height = 10}
 library(ggseg)
 library(ggplot2)
 
