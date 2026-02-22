@@ -100,10 +100,12 @@ ho_cort <- create_wholebrain_from_volume(
   atlas_name = "ho_cort",
   output_dir = "data-raw",
   cortical_labels = cortical_labels,
+  skip_existing = TRUE,
   cleanup = FALSE
 )
 
 .hoCort <- ho_cort$cortical
+.hoCort$core$region <- clean_region_names(.hoCort$core$label)
 cat("Cortical class:", paste(class(.hoCort), collapse = ", "), "\n")
 cat("Cortical regions:", nrow(.hoCort$core), "\n")
 
