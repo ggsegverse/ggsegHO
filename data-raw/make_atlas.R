@@ -1,4 +1,4 @@
-devtools::load_all("../../ggsegExtra/")
+library(ggseg.extra)
 # https://neurovault.org/collections/262/
 library(RNifti)
 
@@ -75,86 +75,80 @@ cortical_labels <- c(
   "Occipital Pole"
 )
 
+# --- Prepare combined volume ---
+# Combined HO atlas label scheme:
+#   1, 12     = White matter (excluded from LUT, zeroed by pipeline)
+#   3-11      = Left subcortical
+#   14-21     = Right subcortical
+#   101-148   = Cortical regions
+#
+# Subcortical label 3 (Left Lateral Ventricle) conflicts with FS cortex
+# reference label 3 that wholebrain_prepare_subcortical_volume uses for
+# brain outline geometry. Remap subcortical IDs to 200+ to avoid this.
+
+vol <- readNifti("data-raw/HarvardOxford-cort_and_sub-maxprob-thr25-1mm.nii.gz")
+arr <- as.array(vol)
+
+subcort_orig_ids <- c(3:11, 14:21)
+subcort_remapped_ids <- subcort_orig_ids + 200L
+
+remapped <- array(0L, dim = dim(arr))
+for (i in seq_along(subcort_orig_ids)) {
+  remapped[arr == subcort_orig_ids[i]] <- subcort_remapped_ids[i]
+}
+for (idx in 101:148) {
+  remapped[arr == idx] <- idx
+}
+
+remapped_path <- "data-raw/ho_combined_remapped.nii.gz"
+writeNifti(asNifti(remapped, reference = vol), remapped_path)
+
+# --- Build LUT with type column ---
+
 set.seed(42)
 n <- length(cortical_labels) + length(subcortical_labels)
 palette_r <- sample(50:220, n, replace = TRUE)
 palette_g <- sample(50:220, n, replace = TRUE)
 palette_b <- sample(50:220, n, replace = TRUE)
 
-# --- Step 1: Cortical atlas from cortical-only NIfTI ---
-# Uses IDs 1-48 (no subcortical contamination on the surface)
-
-cort_lut <- data.frame(
-  idx = 1:48,
-  label = cortical_labels,
-  R = palette_r[seq_along(cortical_labels)],
-  G = palette_g[seq_along(cortical_labels)],
-  B = palette_b[seq_along(cortical_labels)],
-  A = rep(255L, 48),
+lut <- data.frame(
+  idx = c(subcort_remapped_ids, 101:148),
+  label = c(subcortical_labels, cortical_labels),
+  R = palette_r,
+  G = palette_g,
+  B = palette_b,
+  A = rep(255L, n),
+  type = c(
+    rep("subcortical", length(subcortical_labels)),
+    rep("cortical", length(cortical_labels))
+  ),
   stringsAsFactors = FALSE
 )
 
-ho_cort <- create_wholebrain_from_volume(
-  input_volume = "data-raw/HarvardOxford-cort-maxprob-thr25-1mm.nii.gz",
-  input_lut = cort_lut,
-  atlas_name = "ho_cort",
+# --- Create cortical + subcortical atlas in one pipeline call ---
+
+ho <- create_wholebrain_from_volume(
+  input_volume = remapped_path,
+  input_lut = lut,
+  atlas_name = "ho",
   output_dir = "data-raw",
-  cortical_labels = cortical_labels,
-  skip_existing = TRUE,
+  skip_existing = FALSE,
   cleanup = FALSE
 )
 
-.hoCort <- ho_cort$cortical
-.hoCort$core$region <- clean_region_names(.hoCort$core$label)
-cat("Cortical class:", paste(class(.hoCort), collapse = ", "), "\n")
+# --- Post-processing: smooth and simplify outside the pipeline ---
+
+.hoCort <- ho$cortical
+.hoCort$core$region <- gsub("^[lr]h_", "", .hoCort$core$label)
+.hoCort <- .hoCort |>
+  atlas_smooth(smoothness = 5) |>
+  atlas_simplify(tolerance = 0.5)
+
+.hoSub <- ho$subcortical |>
+  atlas_smooth(smoothness = 5) |>
+  atlas_simplify(tolerance = 0.5)
+
 cat("Cortical regions:", nrow(.hoCort$core), "\n")
-
-# --- Step 2: Subcortical atlas from subcortical NIfTI ---
-# Create volume with cortex reference for brain outline
-
-sub_vol <- readNifti("data-raw/HarvardOxford-sub-maxprob-thr25-1mm.nii.gz")
-sub_arr <- as.array(sub_vol)
-
-# Map subcortical IDs: 1=L White Matter, 2=L Cortex, 3=L Ventricle, ...
-# Subcortical labels we want (removing white matter IDs 1,12 and cortex IDs 2,13):
-# ID 3=L Ventricle, 4=L Thalamus, 5=L Caudate, 6=L Putamen, 7=L Pallidum,
-# 8=Brain-Stem, 9=L Hippocampus, 10=L Amygdala, 11=L Accumbens,
-# 14=R Ventricle, 15=R Thalamus, 16=R Caudate, 17=R Putamen, 18=R Pallidum,
-# 19=R Hippocampus, 20=R Amygdala, 21=R Accumbens
-
-# Remap white matter + cortex labels to FS cortex labels for reference geometry
-ref_arr <- sub_arr
-ref_arr[sub_arr == 1L] <- 3L
-ref_arr[sub_arr == 2L] <- 3L
-ref_arr[sub_arr == 12L] <- 42L
-ref_arr[sub_arr == 13L] <- 42L
-
-ref_vol_path <- "data-raw/ho_sub_with_ref.nii.gz"
-writeNifti(asNifti(ref_arr, reference = sub_vol), ref_vol_path)
-
-subcort_ids <- c(3:11, 14:21)
-subcort_lut <- data.frame(
-  idx = subcort_ids,
-  label = subcortical_labels,
-  R = palette_r[length(cortical_labels) + seq_along(subcortical_labels)],
-  G = palette_g[length(cortical_labels) + seq_along(subcortical_labels)],
-  B = palette_b[length(cortical_labels) + seq_along(subcortical_labels)],
-  A = rep(255L, length(subcortical_labels)),
-  stringsAsFactors = FALSE
-)
-
-subcort_lut_path <- "data-raw/ho_sub_lut.txt"
-write_ctab(subcort_lut, subcort_lut_path)
-
-.hoSub <- create_subcortical_from_volume(
-  input_volume = ref_vol_path,
-  input_lut = subcort_lut_path,
-  atlas_name = "ho_sub",
-  output_dir = "data-raw",
-  cleanup = FALSE
-)
-
-cat("Subcortical class:", paste(class(.hoSub), collapse = ", "), "\n")
 cat("Subcortical regions:", nrow(.hoSub$core), "\n")
 
 # --- Save ---
