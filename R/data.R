@@ -15,6 +15,7 @@
 #' @export
 #' @examples
 #' hoCort()
+#' plot(hoCort())
 hoCort <- function() .hoCort
 
 
@@ -33,6 +34,7 @@ hoCort <- function() .hoCort
 #' @export
 #' @examples
 #' hoSub()
+#' plot(hoSub())
 hoSub <- function() .hoSub
 
 
@@ -52,6 +54,7 @@ hoSub <- function() .hoSub
 #' @export
 #' @examples
 #' ho2Cort()
+#' plot(ho2Cort())
 ho2Cort <- function() .ho2Cort
 
 
@@ -71,4 +74,5 @@ ho2Cort <- function() .ho2Cort
 #' @export
 #' @examples
 #' ho2Sub()
+#' plot(ho2Sub())
 ho2Sub <- function() .ho2Sub
