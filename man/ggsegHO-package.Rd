@@ -8,7 +8,7 @@
 \description{
 \if{html}{\figure{logo.png}{options: style='float: right' alt='logo' width='120'}}
 
-Harvard-Oxford cortical atlas for the 'ggseg' ecosystem. Provides a unified 'ggseg_atlas' object with 2D polygon geometry for use with 'ggseg'.
+Harvard-Oxford cortical and subcortical atlases for the 'ggseg' ecosystem. Provides cortical (48 regions per hemisphere) and subcortical (19 structures) 'ggseg_atlas' objects with 2D polygon and 3D mesh geometry.
 }
 \seealso{
 Useful links:
