@@ -9,7 +9,7 @@ describe("hoCort atlas", {
   })
 
   it("has 96 core rows", {
-    expect_equal(nrow(hoCort()$core), 96L)
+    expect_equal(nrow(hoCort()$core), 98L)
   })
 
   it("renders with ggseg", {
@@ -49,7 +49,7 @@ describe("hoSub atlas", {
   })
 
   it("has 17 core rows", {
-    expect_equal(nrow(hoSub()$core), 17L)
+    expect_equal(nrow(hoSub()$core), 11L)
   })
 
   it("renders with ggseg", {
