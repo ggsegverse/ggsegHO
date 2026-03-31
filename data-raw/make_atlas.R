@@ -151,6 +151,11 @@ ho <- create_wholebrain_from_volume(
 cat("Cortical regions:", nrow(.hoCort$core), "\n")
 cat("Subcortical regions:", nrow(.hoSub$core), "\n")
 
+if (!is.null(ho$cerebellar)) {
+  .hoCer <- ho$cerebellar
+  cat("Cerebellar regions:", nrow(.hoCer$core), "\n")
+}
+
 # --- Save ---
 
 objs <- ls(all.names = TRUE, pattern = "^\\.ho")

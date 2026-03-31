@@ -80,3 +80,23 @@ ho2Cort <- function() .ho2Cort
 #' ho2Sub()
 #' plot(ho2Sub())
 ho2Sub <- function() .ho2Sub
+
+
+#' Harvard-Oxford Cerebellar Atlas
+#'
+#' Cerebellar parcellation from the Harvard-Oxford atlas distributed
+#' with FSL. Contains 2D polygon geometry for [ggseg::geom_brain()]
+#' and 3D meshes for [ggseg3d::ggseg3d()].
+#'
+#' @family ggseg_atlases
+#' @family cerebellar_atlases
+#'
+#' @references Makris, et al. (2006) Schizophrenia research 83(2-3):155-151
+#' (\doi{10.1016/j.schres.2005.11.020})
+#'
+#' @return A [ggseg.formats::ggseg_atlas] object (subcortical).
+#' @export
+#' @examples
+#' hoCer()
+#' plot(hoCer())
+hoCer <- function() .hoCer
