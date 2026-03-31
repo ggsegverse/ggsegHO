@@ -6,6 +6,7 @@
 #' [ggseg3d::ggseg3d()].
 #'
 #' @family ggseg_atlases
+#' @family cortical_atlases
 #'
 #' @references Makris, et al. (2006) Schizophrenia research 83(2-3):155-151
 #' (\doi{10.1016/j.schres.2005.11.020})
@@ -26,6 +27,7 @@ hoCort <- function() .hoCort
 #' [ggseg::geom_brain()] and 3D mesh data for [ggseg3d::ggseg3d()].
 #'
 #' @family ggseg_atlases
+#' @family subcortical_atlases
 #'
 #' @references Makris, et al. (2006) Schizophrenia research 83(2-3):155-151
 #' (\doi{10.1016/j.schres.2005.11.020})
@@ -46,6 +48,7 @@ hoSub <- function() .hoSub
 #' 3D vertex indices for [ggseg3d::ggseg3d()].
 #'
 #' @family ggseg_atlases
+#' @family cortical_atlases
 #'
 #' @references Rushmore, et al. (2022) Frontiers in Neuroanatomy 16:1035420
 #' (\doi{10.3389/fnana.2022.1035420})
@@ -66,6 +69,7 @@ ho2Cort <- function() .ho2Cort
 #' 3D mesh data for [ggseg3d::ggseg3d()].
 #'
 #' @family ggseg_atlases
+#' @family subcortical_atlases
 #'
 #' @references Rushmore, et al. (2022) Frontiers in Neuroanatomy 16:1035420
 #' (\doi{10.3389/fnana.2022.1035420})
