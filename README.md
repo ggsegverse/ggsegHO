@@ -1,86 +1,51 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# ggsegHO <img src='man/figures/logo.png' align="right" height="138.5" />
+# ggsegHO
 
 <!-- badges: start -->
 
-[![R-CMD-check](https://github.com/ggseg/ggsegHO/workflows/R-CMD-check/badge.svg)](https://github.com/ggseg/ggsegHO/actions)
-[![DOI](https://zenodo.org/badge/250284032.svg)](https://zenodo.org/badge/latestdoi/250284032)
-
+[![R-CMD-check](https://github.com/ggsegverse/ggsegHO/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/ggsegverse/ggsegHO/actions/workflows/R-CMD-check.yaml)
+[![r-universe](https://ggsegverse.r-universe.dev/badges/ggsegHO)](https://ggsegverse.r-universe.dev/ggsegHO)
 <!-- badges: end -->
 
-This package contains dataset for plotting the Harvard-Oxford cortical
-atlas ggseg and ggseg3d.
-
-Makris,et al. (2006) Schizophrenia research 83(2-3):155-151
-[pubmed](https://doi.org/10.1016/j.schres.2005.11.020)
+Harvard-Oxford Atlas for the ggsegverse Ecosystem.
 
 ## Installation
 
-We recommend installing the ggseg-atlases through the ggseg
-[r-universe](https://ggseg.r-universe.dev/ui#builds):
-
 ``` r
-# Enable this universe
-options(repos = c(
-    ggseg = 'https://ggseg.r-universe.dev',
-    CRAN = 'https://cloud.r-project.org'))
+# From r-universe
+install.packages("ggsegHO", repos = "https://ggsegverse.r-universe.dev")
 
-# Install some packages
-install.packages('ggsegHO')
-```
-
-You can install the released version of ggsegHO from
-[GitHub](https://github.com/) with:
-
-``` r
+# From GitHub
 # install.packages("remotes")
-remotes::install_github("LCBC-UiO/ggsegHO")
+remotes::install_github("ggsegverse/ggsegHO")
 ```
 
-## Example
+## Atlases
 
-This is a basic example which shows you how to solve a common problem:
+### hoCort
+
+Harvard-Oxford cortical parcellation.
 
 ``` r
 library(ggsegHO)
+plot(hoCort())
 ```
+
+<img src="man/figures/README-hoCort-1.png" alt="" width="100%" />
+
+### hoSub
+
+Harvard-Oxford subcortical parcellation.
 
 ``` r
-library(ggseg)
-#> Warning: package 'ggseg' was built under R version 4.1.1
-#> Loading required package: ggplot2
-library(ggplot2)
-
-plot(hoCort) +
-  theme(legend.position = "bottom",
-        legend.text = element_text(size = 6)) +
-  guides(fill = guide_legend(ncol = 3))
+plot(hoSub())
 ```
 
-<img src="man/figures/README-unnamed-chunk-4-1.png" width="100%" />
+<img src="man/figures/README-hoSub-1.png" alt="" width="100%" /> \##
+Data source
 
-<!-- ```{r "noneval", eval=FALSE} -->
-<!-- library(ggseg3d) -->
-<!-- ggseg3d(atlas = desterieux_3d) %>%  -->
-<!--   pan_camera("right lateral") -->
-<!-- ``` -->
-<!-- ```{r "orca", include=FALSE} -->
-<!-- library(ggseg3d) -->
-<!-- p <- ggseg3d(atlas = desterieux_3d) %>% -->
-<!--   pan_camera("right lateral") %>% -->
-<!--   plotly::add_annotations( text="Screen capture", -->
-<!--                   legendtitle=TRUE, showarrow=FALSE, -->
-<!--                   font = list(color = "#000000b4", -->
-<!--                               family = 'sans serif', -->
-<!--                               size = 50)) -->
-<!-- plotly::orca(p, "man/figures/README-3d-plot.png") -->
-<!-- ``` -->
-<!-- ```{r "incl", echo=FALSE} -->
-<!-- knitr::include_graphics("man/figures/README-3d-plot.png") -->
-<!-- ``` -->
+Harvard-Oxford atlas from FSL, remapped to cortical/subcortical.
 
-Please note that the ‘ggsegHO’ project is released with a [Contributor
-Code of Conduct](CODE_OF_CONDUCT.md). By contributing to this project,
-you agree to abide by its terms.
+- **Date obtained**: 2026-02-21

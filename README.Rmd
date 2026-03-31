@@ -9,54 +9,49 @@ knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>",
   fig.path = "man/figures/README-",
-  fig.width = 6,
-  out.width = "100%",
-  fig.retina = 3
+  out.width = "100%"
 )
 ```
 
-# ggsegHO <img src='man/figures/logo.png' align="right" height="138.5" />
+# ggsegHO
 
 <!-- badges: start -->
-[![R-CMD-check](https://github.com/ggseg/ggsegHO/workflows/R-CMD-check/badge.svg)](https://github.com/ggseg/ggsegHO/actions)
-[![DOI](https://zenodo.org/badge/250284032.svg)](https://zenodo.org/badge/latestdoi/250284032)
+[![R-CMD-check](https://github.com/ggsegverse/ggsegHO/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/ggsegverse/ggsegHO/actions/workflows/R-CMD-check.yaml)
+[![r-universe](https://ggsegverse.r-universe.dev/badges/ggsegHO)](https://ggsegverse.r-universe.dev/ggsegHO)
 <!-- badges: end -->
 
-This package contains the Harvard-Oxford cortical atlas for the ggseg plotting ecosystem.
-
-Makris, et al. (2006) Schizophrenia research 83(2-3):155-151
-[doi](https://doi.org/10.1016/j.schres.2005.11.020)
+Harvard-Oxford Atlas for the ggsegverse Ecosystem.
 
 ## Installation
 
-You can install ggsegHO from [GitHub](https://github.com/) with:
+```{r, eval = FALSE}
+# From r-universe
+install.packages("ggsegHO", repos = "https://ggsegverse.r-universe.dev")
 
-``` r
+# From GitHub
 # install.packages("remotes")
-remotes::install_github("ggseg/ggsegHO")
+remotes::install_github("ggsegverse/ggsegHO")
 ```
 
-## Example
+## Atlases
+### hoCort
 
-```{r}
+Harvard-Oxford cortical parcellation.
+
+```{r hoCort}
 library(ggsegHO)
+plot(hoCort())
 ```
 
-```{r "ggseg", fig.height = 10}
-library(ggseg)
-library(ggplot2)
+### hoSub
 
-ggplot() +
-  geom_brain(
-    atlas = hoCort(),
-    mapping = aes(fill = label),
-    position = position_brain(hemi ~ view),
-    show.legend = FALSE
-  ) +
-  scale_fill_manual(values = hoCort()$palette, na.value = "grey") +
-  theme_void()
+Harvard-Oxford subcortical parcellation.
+
+```{r hoSub}
+plot(hoSub())
 ```
+## Data source
 
-Please note that the 'ggsegHO' project is released with a
-[Contributor Code of Conduct](CODE_OF_CONDUCT.md).
-By contributing to this project, you agree to abide by its terms.
+Harvard-Oxford atlas from FSL, remapped to cortical/subcortical.
+
+- **Date obtained**: 2026-02-21
