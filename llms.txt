@@ -1,10 +1,10 @@
 # ggsegHO
 
-This package contains dataset for plotting the Harvard-Oxford cortical
-atlas ggseg and ggseg3d.
+This package contains the Harvard-Oxford cortical atlas for ggseg.
 
-Makris,et al. (2006) Schizophrenia research 83(2-3):155-151
-[pubmed](https://doi.org/10.1016/j.schres.2005.11.020)
+Makris N et al. (2006). Decreased volume of left and total anterior
+insular lobule in schizophrenia. *Schizophrenia Research*, 83(2-3),
+155-171.
 
 ## Installation
 
@@ -12,48 +12,47 @@ We recommend installing the ggseg-atlases through the ggseg
 [r-universe](https://ggseg.r-universe.dev/ui#builds):
 
 ``` r
-# Enable this universe
 options(repos = c(
-    ggseg = 'https://ggseg.r-universe.dev',
-    CRAN = 'https://cloud.r-project.org'))
+  ggseg = "https://ggseg.r-universe.dev",
+  CRAN = "https://cloud.r-project.org"
+))
 
-# Install some packages
-install.packages('ggsegHO')
+install.packages("ggsegHO")
 ```
 
-You can install the released version of ggsegHO from
-[GitHub](https://github.com/) with:
+You can install this package from [GitHub](https://github.com/) with:
 
 ``` r
-# install.packages("remotes")
-remotes::install_github("LCBC-UiO/ggsegHO")
+# install.packages("pak")
+pak::pak("ggsegverse/ggsegHO")
 ```
 
-## Example
-
-This is a basic example which shows you how to solve a common problem:
-
-``` r
-library(ggsegHO)
-```
+## Harvard-Oxford cortical atlas
 
 ``` r
 library(ggseg)
-#> Warning: package 'ggseg' was built under R version 4.1.1
-#> Loading required package: ggplot2
+library(ggsegHO)
 library(ggplot2)
 
-plot(hoCort) +
-  theme(legend.position = "bottom",
-        legend.text = element_text(size = 6)) +
-  guides(fill = guide_legend(ncol = 3))
+ggplot() +
+  geom_brain(
+    atlas = hoCort(),
+    mapping = aes(fill = label),
+    position = position_brain(hemi ~ view),
+    show.legend = FALSE
+  ) +
+  scale_fill_manual(values = hoCort()$palette, na.value = "grey") +
+  theme_void()
 ```
 
-![](reference/figures/README-unnamed-chunk-4-1.png)
+![](reference/figures/README-hoCort-1.png)
 
-Please note that the ‘ggsegHO’ project is released with a [Contributor
-Code of Conduct](https://ggseg.github.io/ggsegHO/CODE_OF_CONDUCT.md). By
-contributing to this project, you agree to abide by its terms.
+## Data source
+
+Makris N et al. (2006). Decreased volume of left and total anterior
+insular lobule in schizophrenia. *Schizophrenia Research*, 83(2-3),
+155-171.
+[doi:10.1016/j.schres.2005.11.020](https://doi.org/10.1016/j.schres.2005.11.020)
 
 # Package index
 
