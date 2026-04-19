@@ -11,8 +11,8 @@ knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>",
   fig.path = "man/figures/README-",
-  fig.width = 6,
   out.width = "100%",
+  fig.width = 10,
   fig.retina = 3
 )
 ```
@@ -20,45 +20,43 @@ knitr::opts_chunk$set(
 # ggsegHO <img src='man/figures/logo.png' align="right" height="138.5" />
 
 <!-- badges: start -->
-[![R-CMD-check](https://github.com/ggseg/ggsegHO/workflows/R-CMD-check/badge.svg)](https://github.com/ggseg/ggsegHO/actions)
-[![DOI](https://zenodo.org/badge/250284032.svg)](https://zenodo.org/badge/latestdoi/250284032)
+[![R-CMD-check](https://github.com/ggsegverse/ggsegHO/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/ggsegverse/ggsegHO/actions/workflows/R-CMD-check.yaml)
+[![r-universe](https://ggsegverse.r-universe.dev/badges/ggsegHO)](https://ggsegverse.r-universe.dev/ggsegHO)
 <!-- badges: end -->
 
-This package contains the Harvard-Oxford cortical atlas for the ggseg plotting ecosystem.
-
-Makris, et al. (2006) Schizophrenia research 83(2-3):155-151
-[doi](https://doi.org/10.1016/j.schres.2005.11.020)
+Harvard-Oxford cortical, subcortical, and cerebellar atlases for the
+ggseg ecosystem. Includes the original Harvard-Oxford atlas (FSL) and
+the Harvard-Oxford Atlas 2.0 (HOA-2).
 
 ## Installation
 
 We recommend installing the ggseg-atlases through the ggseg
-[r-universe](https://ggseg.r-universe.dev/ui#builds):
+[r-universe](https://ggsegverse.r-universe.dev/ui#builds):
 
 ```{r}
 #| label: install-r-universe
 #| eval: false
 options(repos = c(
-  ggseg = "https://ggseg.r-universe.dev",
+  ggseg = "https://ggsegverse.r-universe.dev",
   CRAN = "https://cloud.r-project.org"
 ))
 
 install.packages("ggsegHO")
 ```
 
-You can install ggsegHO from [GitHub](https://github.com/) with:
+You can install this package from [GitHub](https://github.com/) with:
 
 ```r
-# install.packages("remotes")
-remotes::install_github("ggseg/ggsegHO")
+# install.packages("pak")
+pak::pak("ggsegverse/ggsegHO")
 ```
 
-## Example
+## Harvard-Oxford cortical
 
 ```{r}
-#| label: 2d-plot
-#| fig-height: 10
-library(ggsegHO)
+#| label: ho-cort
 library(ggseg)
+library(ggsegHO)
 library(ggplot2)
 
 ggplot() +
@@ -72,6 +70,71 @@ ggplot() +
   theme_void()
 ```
 
-Please note that the 'ggsegHO' project is released with a
-[Contributor Code of Conduct](CODE_OF_CONDUCT.md).
-By contributing to this project, you agree to abide by its terms.
+## Harvard-Oxford subcortical
+
+```{r}
+#| label: ho-sub
+ggplot() +
+  geom_brain(
+    atlas = hoSub(),
+    mapping = aes(fill = label),
+    show.legend = FALSE
+  ) +
+  scale_fill_manual(values = hoSub()$palette, na.value = "grey") +
+  theme_void()
+```
+
+## HOA-2 cortical
+
+```{r}
+#| label: ho2-cort
+ggplot() +
+  geom_brain(
+    atlas = ho2_cort(),
+    mapping = aes(fill = label),
+    position = position_brain(hemi ~ view),
+    show.legend = FALSE
+  ) +
+  scale_fill_manual(
+    values = ho2_cort()$palette, na.value = "grey"
+  ) +
+  theme_void()
+```
+
+## HOA-2 subcortical
+
+```{r}
+#| label: ho2-sub
+ggplot() +
+  geom_brain(
+    atlas = ho2_sub(),
+    mapping = aes(fill = label),
+    show.legend = FALSE
+  ) +
+  scale_fill_manual(
+    values = ho2_sub()$palette, na.value = "grey"
+  ) +
+  theme_void()
+```
+
+## HOA-2 cerebellar
+
+```{r}
+#| label: ho2-cereb
+ggplot() +
+  geom_brain(
+    atlas = ho2_cereb(),
+    mapping = aes(fill = label),
+    show.legend = FALSE
+  ) +
+  theme_void()
+```
+
+## Data source
+
+Makris N, et al. (2006). Decreased volume of left and total anterior
+insular lobule in schizophrenia. *Schizophrenia Research*,
+83(2-3):155-171.
+
+Rushmore RJ, et al. (2022). HOA2.0-ComPaRe: A next generation
+Harvard-Oxford Atlas. *Frontiers in Neuroanatomy*, 16:1035420.

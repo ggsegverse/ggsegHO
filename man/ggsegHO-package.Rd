@@ -8,7 +8,7 @@
 \description{
 \if{html}{\figure{logo.png}{options: style='float: right' alt='logo' width='120'}}
 
-Harvard-Oxford cortical and subcortical atlases for the 'ggseg' ecosystem. Provides cortical (48 regions per hemisphere) and subcortical (19 structures) 'ggseg_atlas' objects with 2D polygon and 3D mesh geometry.
+Harvard-Oxford cortical, subcortical, and cerebellar atlases for the 'ggseg' ecosystem. Includes the original Harvard-Oxford atlas (FSL) and the Harvard-Oxford Atlas 2.0 (HOA-2, Rushmore et al. 2022) as 'ggseg_atlas' objects with 2D polygon and 3D mesh geometry.
 }
 \seealso{
 Useful links:
