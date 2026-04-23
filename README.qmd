@@ -57,77 +57,36 @@ pak::pak("ggsegverse/ggsegHO")
 #| label: ho-cort
 library(ggseg)
 library(ggsegHO)
-library(ggplot2)
 
-ggplot() +
-  geom_brain(
-    atlas = hoCort(),
-    mapping = aes(fill = label),
-    position = position_brain(hemi ~ view),
-    show.legend = FALSE
-  ) +
-  scale_fill_manual(values = hoCort()$palette, na.value = "grey") +
-  theme_void()
+plot(hoCort())
 ```
 
 ## Harvard-Oxford subcortical
 
 ```{r}
 #| label: ho-sub
-ggplot() +
-  geom_brain(
-    atlas = hoSub(),
-    mapping = aes(fill = label),
-    show.legend = FALSE
-  ) +
-  scale_fill_manual(values = hoSub()$palette, na.value = "grey") +
-  theme_void()
+plot(hoSub())
 ```
 
 ## HOA-2 cortical
 
 ```{r}
 #| label: ho2-cort
-ggplot() +
-  geom_brain(
-    atlas = ho2_cort(),
-    mapping = aes(fill = label),
-    position = position_brain(hemi ~ view),
-    show.legend = FALSE
-  ) +
-  scale_fill_manual(
-    values = ho2_cort()$palette, na.value = "grey"
-  ) +
-  theme_void()
+plot(ho2_cort())
 ```
 
 ## HOA-2 subcortical
 
 ```{r}
 #| label: ho2-sub
-ggplot() +
-  geom_brain(
-    atlas = ho2_sub(),
-    mapping = aes(fill = label),
-    show.legend = FALSE
-  ) +
-  scale_fill_manual(
-    values = ho2_sub()$palette, na.value = "grey"
-  ) +
-  theme_void()
+plot(ho2_sub())
 ```
 
 ## HOA-2 cerebellar
 
 ```{r}
 #| label: ho2-cereb
-ggplot() +
-  geom_brain(
-    atlas = ho2_cereb(),
-    mapping = aes(fill = label),
-    show.legend = FALSE
-  ) +
-  theme_void()
+plot(ho2_cereb())
 ```
 
 ## Data source
