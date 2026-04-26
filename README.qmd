@@ -21,7 +21,7 @@ knitr::opts_chunk$set(
 
 <!-- badges: start -->
 [![R-CMD-check](https://github.com/ggsegverse/ggsegHO/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/ggsegverse/ggsegHO/actions/workflows/R-CMD-check.yaml)
-[![r-universe](https://ggsegverse.r-universe.dev/badges/ggsegHO)](https://ggsegverse.r-universe.dev/ggsegHO)
+[![r-universe](https://ggseg.r-universe.dev/badges/ggsegHO)](https://ggseg.r-universe.dev/ggsegHO)
 <!-- badges: end -->
 
 Harvard-Oxford cortical, subcortical, and cerebellar atlases for the
@@ -31,13 +31,13 @@ the Harvard-Oxford Atlas 2.0 (HOA-2).
 ## Installation
 
 We recommend installing the ggseg-atlases through the ggseg
-[r-universe](https://ggsegverse.r-universe.dev/ui#builds):
+[r-universe](https://ggseg.r-universe.dev/ui#builds):
 
 ```{r}
 #| label: install-r-universe
 #| eval: false
 options(repos = c(
-  ggseg = "https://ggsegverse.r-universe.dev",
+  ggseg = "https://ggseg.r-universe.dev",
   CRAN = "https://cloud.r-project.org"
 ))
 
@@ -94,6 +94,7 @@ plot(ho2_cereb())
 Makris N, et al. (2006). Decreased volume of left and total anterior
 insular lobule in schizophrenia. *Schizophrenia Research*,
 83(2-3):155-171.
+[doi:10.1016/j.schres.2005.11.020](https://doi.org/10.1016/j.schres.2005.11.020)
 
 Rushmore RJ, et al. (2022). HOA2.0-ComPaRe: A next generation
 Harvard-Oxford Atlas. *Frontiers in Neuroanatomy*, 16:1035420.
