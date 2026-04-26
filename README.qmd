@@ -24,10 +24,9 @@ knitr::opts_chunk$set(
 [![r-universe](https://ggseg.r-universe.dev/badges/ggsegHO)](https://ggseg.r-universe.dev/ggsegHO)
 <!-- badges: end -->
 
-This package contains the Harvard-Oxford cortical atlas for ggseg.
-
-Makris N et al. (2006). Decreased volume of left and total anterior insular
-lobule in schizophrenia. *Schizophrenia Research*, 83(2-3), 155-171.
+Harvard-Oxford cortical, subcortical, and cerebellar atlases for the
+ggseg ecosystem. Includes the original Harvard-Oxford atlas (FSL) and
+the Harvard-Oxford Atlas 2.0 (HOA-2).
 
 ## Installation
 
@@ -52,28 +51,50 @@ You can install this package from [GitHub](https://github.com/) with:
 pak::pak("ggsegverse/ggsegHO")
 ```
 
-## Harvard-Oxford cortical atlas
+## Harvard-Oxford cortical
 
 ```{r}
-#| label: hoCort
-#| fig-height: 7
+#| label: ho-cort
 library(ggseg)
 library(ggsegHO)
-library(ggplot2)
 
-ggplot() +
-  geom_brain(
-    atlas = hoCort(),
-    mapping = aes(fill = label),
-    position = position_brain(hemi ~ view),
-    show.legend = FALSE
-  ) +
-  scale_fill_manual(values = hoCort()$palette, na.value = "grey") +
-  theme_void()
+plot(hoCort())
+```
+
+## Harvard-Oxford subcortical
+
+```{r}
+#| label: ho-sub
+plot(hoSub())
+```
+
+## HOA-2 cortical
+
+```{r}
+#| label: ho2-cort
+plot(ho2_cort())
+```
+
+## HOA-2 subcortical
+
+```{r}
+#| label: ho2-sub
+plot(ho2_sub())
+```
+
+## HOA-2 cerebellar
+
+```{r}
+#| label: ho2-cereb
+plot(ho2_cereb())
 ```
 
 ## Data source
 
-Makris N et al. (2006). Decreased volume of left and total anterior insular
-lobule in schizophrenia. *Schizophrenia Research*, 83(2-3), 155-171.
+Makris N, et al. (2006). Decreased volume of left and total anterior
+insular lobule in schizophrenia. *Schizophrenia Research*,
+83(2-3):155-171.
 [doi:10.1016/j.schres.2005.11.020](https://doi.org/10.1016/j.schres.2005.11.020)
+
+Rushmore RJ, et al. (2022). HOA2.0-ComPaRe: A next generation
+Harvard-Oxford Atlas. *Frontiers in Neuroanatomy*, 16:1035420.

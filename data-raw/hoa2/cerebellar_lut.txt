@@ -1,0 +1,4 @@
+1	Cerebellar_Cortex_Left	220	148	34	0
+2	Cerebellar_Cortex_Right	220	148	34	0
+3	Cerebellar_White_Matter_Left	220	248	164	0
+4	Cerebellar_White_Matter_Right	220	248	164	0

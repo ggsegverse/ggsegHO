@@ -1,65 +1,51 @@
 
+<!-- README.md is generated from README.Rmd. Please edit that file -->
 
-<!-- README.md is generated from README.qmd. Please edit that file -->
-
-# ggsegHO <img src='man/figures/logo.png' align="right" height="138.5" />
+# ggsegHO
 
 <!-- badges: start -->
 
 [![R-CMD-check](https://github.com/ggsegverse/ggsegHO/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/ggsegverse/ggsegHO/actions/workflows/R-CMD-check.yaml)
-[![r-universe](https://ggseg.r-universe.dev/badges/ggsegHO.png)](https://ggseg.r-universe.dev/ggsegHO)
+[![r-universe](https://ggsegverse.r-universe.dev/badges/ggsegHO)](https://ggsegverse.r-universe.dev/ggsegHO)
 <!-- badges: end -->
 
-This package contains the Harvard-Oxford cortical atlas for ggseg.
-
-Makris N et al. (2006). Decreased volume of left and total anterior
-insular lobule in schizophrenia. *Schizophrenia Research*, 83(2-3),
-155-171.
+Harvard-Oxford Atlas for the ggsegverse Ecosystem.
 
 ## Installation
 
-We recommend installing the ggseg-atlases through the ggseg
-[r-universe](https://ggseg.r-universe.dev/ui#builds):
-
 ``` r
-options(repos = c(
-  ggseg = "https://ggseg.r-universe.dev",
-  CRAN = "https://cloud.r-project.org"
-))
+# From r-universe
+install.packages("ggsegHO", repos = "https://ggsegverse.r-universe.dev")
 
-install.packages("ggsegHO")
+# From GitHub
+# install.packages("remotes")
+remotes::install_github("ggsegverse/ggsegHO")
 ```
 
-You can install this package from [GitHub](https://github.com/) with:
+## Atlases
+
+### hoCort
+
+Harvard-Oxford cortical parcellation.
 
 ``` r
-# install.packages("pak")
-pak::pak("ggsegverse/ggsegHO")
-```
-
-## Harvard-Oxford cortical atlas
-
-``` r
-library(ggseg)
 library(ggsegHO)
-library(ggplot2)
-
-ggplot() +
-  geom_brain(
-    atlas = hoCort(),
-    mapping = aes(fill = label),
-    position = position_brain(hemi ~ view),
-    show.legend = FALSE
-  ) +
-  scale_fill_manual(values = hoCort()$palette, na.value = "grey") +
-  theme_void()
+plot(hoCort())
 ```
 
-<img src="man/figures/README-hoCort-1.png" style="width:100.0%" />
+<img src="man/figures/README-hoCort-1.png" alt="" width="100%" />
 
-## Data source
+### hoSub
 
-Makris N et al. (2006). Decreased volume of left and total anterior
-insular lobule in schizophrenia. *Schizophrenia Research*, 83(2-3),
-155-171.
-[doi:10.1016/j.schres.2005.11.020](https://doi.org/10.1016/j.schres.2005.11.020)
+Harvard-Oxford subcortical parcellation.
+
+``` r
+plot(hoSub())
+```
+
+<img src="man/figures/README-hoSub-1.png" alt="" width="100%" /> \##
+Data source
+
+Harvard-Oxford atlas from FSL, remapped to cortical/subcortical.
+
+- **Date obtained**: 2026-02-21
