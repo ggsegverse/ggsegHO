@@ -1,8 +1,9 @@
 # ggsegHO: Harvard-Oxford Atlas for the 'ggseg' Ecosystem
 
-Harvard-Oxford cortical atlas for the 'ggseg' ecosystem. Provides a
-unified 'ggseg_atlas' object with 2D polygon geometry for use with
-'ggseg'.
+Harvard-Oxford cortical, subcortical, and cerebellar atlases for the
+'ggseg' ecosystem. Includes the original Harvard-Oxford atlas (FSL) and
+the Harvard-Oxford Atlas 2.0 (HOA-2, Rushmore et al. 2022) as
+'ggseg_atlas' objects with 2D polygon and 3D mesh geometry.
 
 ## See also
 
