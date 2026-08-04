@@ -50,19 +50,17 @@ hoSub()
 #> Rendering: ✔ ggseg
 #> ✔ ggseg3d (meshes)
 #> ────────────────────────────────────────────────────────────────────────────────
-#> # A tibble: 11 × 3
-#>    hemi  region            label                  
-#>    <chr> <chr>             <chr>                  
-#>  1 left  lateral ventricle Left_Lateral_Ventricle 
-#>  2 left  thalamus          Left_Thalamus          
-#>  3 NA    brain stem        Brain-Stem             
-#>  4 left  hippocampus       Left_Hippocampus       
-#>  5 left  amygdala          Left_Amygdala          
-#>  6 left  accumbens         Left_Accumbens         
-#>  7 right lateral ventricle Right_Lateral_Ventricle
-#>  8 right thalamus          Right_Thalamus         
-#>  9 right hippocampus       Right_Hippocampus      
-#> 10 right amygdala          Right_Amygdala         
-#> 11 right accumbens         Right_Accumbens        
+#>     hemi            region                   label
+#> 1   left lateral ventricle  Left_Lateral_Ventricle
+#> 2   left          thalamus           Left_Thalamus
+#> 3   <NA>        brain stem              Brain-Stem
+#> 4   left       hippocampus        Left_Hippocampus
+#> 5   left          amygdala           Left_Amygdala
+#> 6   left         accumbens          Left_Accumbens
+#> 7  right lateral ventricle Right_Lateral_Ventricle
+#> 8  right          thalamus          Right_Thalamus
+#> 9  right       hippocampus       Right_Hippocampus
+#> 10 right          amygdala          Right_Amygdala
+#> ... with 1 more row
 plot(hoSub())
 ```

@@ -12,8 +12,8 @@
 <link rel="icon" sizes="any" href="favicon.ico">
 <link rel="manifest" href="site.webmanifest">
 <script src="lightswitch.js"></script><script src="deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link href="deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
-<script src="deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="deps/Inter-0.4.10/font.css" rel="stylesheet">
+<link href="deps/bootstrap-5.3.8/bootstrap.min.css" rel="stylesheet">
+<script src="deps/bootstrap-5.3.8/bootstrap.bundle.min.js"></script><link href="deps/Inter-0.4.10/font.css" rel="stylesheet">
 <link href="deps/JetBrains_Mono-0.4.10/font.css" rel="stylesheet">
 <link href="deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
 <link href="deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
@@ -30,7 +30,7 @@
 
     <a class="navbar-brand me-2" href="index.html">ggsegHO</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.0.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.0.1</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -64,48 +64,71 @@
 <div class="row">
   <main id="main" class="col-md-9"><div class="section level1">
 <div class="page-header">
-<img src="logo.svg" class="logo" alt=""><h1 id="ggsegho">ggsegHO<a class="anchor" aria-label="anchor" href="#ggsegho"></a>
+<img src="logo.svg" class="logo" alt=""><h1 id="ggsegho-">ggsegHO <a class="anchor" aria-label="anchor" href="#ggsegho-"></a>
 </h1>
 </div>
 <!-- badges: start -->
 
-<p>Harvard-Oxford Atlas for the ggsegverse Ecosystem.</p>
+<p>Harvard-Oxford cortical, subcortical, and cerebellar atlases for the ggseg ecosystem. Includes the original Harvard-Oxford atlas (FSL) and the Harvard-Oxford Atlas 2.0 (HOA-2).</p>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
+<p>We recommend installing the ggseg-atlases through the ggseg <a href="https://ggseg.r-universe.dev/ui#builds" class="external-link">r-universe</a>:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># From r-universe</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"ggsegHO"</span>, repos <span class="op">=</span> <span class="st">"https://ggsegverse.r-universe.dev"</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">options</a></span><span class="op">(</span>repos <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span></span>
+<span>  ggseg <span class="op">=</span> <span class="st">"https://ggseg.r-universe.dev"</span>,</span>
+<span>  CRAN <span class="op">=</span> <span class="st">"https://cloud.r-project.org"</span></span>
+<span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
-<span><span class="co"># From GitHub</span></span>
-<span><span class="co"># install.packages("remotes")</span></span>
-<span><span class="fu">remotes</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"ggsegverse/ggsegHO"</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"ggsegHO"</span><span class="op">)</span></span></code></pre></div>
+<p>You can install this package from <a href="https://github.com/" class="external-link">GitHub</a> with:</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># install.packages("pak")</span></span>
+<span><span class="fu">pak</span><span class="fu">::</span><span class="fu"><a href="https://pak.r-lib.org/reference/pak.html" class="external-link">pak</a></span><span class="op">(</span><span class="st">"ggsegverse/ggsegHO"</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
-<h2 id="atlases">Atlases<a class="anchor" aria-label="anchor" href="#atlases"></a>
+<h2 id="harvard-oxford-cortical">Harvard-Oxford cortical<a class="anchor" aria-label="anchor" href="#harvard-oxford-cortical"></a>
 </h2>
-<div class="section level3">
-<h3 id="hocort">hoCort<a class="anchor" aria-label="anchor" href="#hocort"></a>
-</h3>
-<p>Harvard-Oxford cortical parcellation.</p>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/ggsegverse/ggsegHO" class="external-link">ggsegHO</a></span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="fu"><a href="reference/hoCort.html">hoCort</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p><img src="reference/figures/README-hoCort-1.png" alt="" width="100%"></p>
-</div>
-<div class="section level3">
-<h3 id="hosub">hoSub<a class="anchor" aria-label="anchor" href="#hosub"></a>
-</h3>
-<p>Harvard-Oxford subcortical parcellation.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="fu"><a href="reference/hoSub.html">hoSub</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p><img src="reference/figures/README-hoSub-1.png" alt="" width="100%"> ## Data source</p>
-<p>Harvard-Oxford atlas from FSL, remapped to cortical/subcortical.</p>
-<ul>
-<li>
-<strong>Date obtained</strong>: 2026-02-21</li>
-</ul>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggsegverse.github.io/ggseg/" class="external-link">ggseg</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/ggsegverse/ggsegHO" class="external-link">ggsegHO</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="fu"><a href="reference/hoCort.html">hoCort</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<p><img src="reference/figures/README-ho-cort-1.png" style="width:100.0%"></p>
 </div>
+<div class="section level2">
+<h2 id="harvard-oxford-subcortical">Harvard-Oxford subcortical<a class="anchor" aria-label="anchor" href="#harvard-oxford-subcortical"></a>
+</h2>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="fu"><a href="reference/hoSub.html">hoSub</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<p><img src="reference/figures/README-ho-sub-1.png" style="width:100.0%"></p>
+</div>
+<div class="section level2">
+<h2 id="hoa-2-cortical">HOA-2 cortical<a class="anchor" aria-label="anchor" href="#hoa-2-cortical"></a>
+</h2>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="fu"><a href="reference/ho2_cort.html">ho2_cort</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<p><img src="reference/figures/README-ho2-cort-1.png" style="width:100.0%"></p>
+</div>
+<div class="section level2">
+<h2 id="hoa-2-subcortical">HOA-2 subcortical<a class="anchor" aria-label="anchor" href="#hoa-2-subcortical"></a>
+</h2>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="fu"><a href="reference/ho2_sub.html">ho2_sub</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<p><img src="reference/figures/README-ho2-sub-1.png" style="width:100.0%"></p>
+</div>
+<div class="section level2">
+<h2 id="hoa-2-cerebellar">HOA-2 cerebellar<a class="anchor" aria-label="anchor" href="#hoa-2-cerebellar"></a>
+</h2>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="fu"><a href="reference/ho2_cereb.html">ho2_cereb</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<p><img src="reference/figures/README-ho2-cereb-1.png" style="width:100.0%"></p>
+</div>
+<div class="section level2">
+<h2 id="data-source">Data source<a class="anchor" aria-label="anchor" href="#data-source"></a>
+</h2>
+<p>Makris N, et al. (2006). Decreased volume of left and total anterior insular lobule in schizophrenia. <em>Schizophrenia Research</em>, 83(2-3):155-171. <a href="https://doi.org/10.1016/j.schres.2005.11.020" class="external-link">doi:10.1016/j.schres.2005.11.020</a></p>
+<p>Rushmore RJ, et al. (2022). HOA2.0-ComPaRe: A next generation Harvard-Oxford Atlas. <em>Frontiers in Neuroanatomy</em>, 16:1035420.</p>
 </div>
 </div>
   </main><aside class="col-md-3"><div class="links">
@@ -150,7 +173,7 @@
 <h2 data-toc-skip>Dev status</h2>
 <ul class="list-unstyled">
 <li><a href="https://github.com/ggsegverse/ggsegHO/actions/workflows/R-CMD-check.yaml" class="external-link"><img src="https://github.com/ggsegverse/ggsegHO/actions/workflows/R-CMD-check.yaml/badge.svg" alt="R-CMD-check"></a></li>
-<li><a href="https://ggsegverse.r-universe.dev/ggsegHO" class="external-link"><img src="https://ggsegverse.r-universe.dev/badges/ggsegHO" alt="r-universe"></a></li>
+<li><a href="https://ggseg.r-universe.dev/ggsegHO" class="external-link"><img src="https://ggseg.r-universe.dev/badges/ggsegHO.png" alt="r-universe"></a></li>
 </ul>
 </div>
 
@@ -163,7 +186,7 @@
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.1.</p>
 </div>
 
     </footer>

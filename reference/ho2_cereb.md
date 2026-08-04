@@ -45,12 +45,10 @@ ho2_cereb()
 #> Rendering: ✔ ggseg
 #> ✔ ggseg3d (vertices)
 #> ────────────────────────────────────────────────────────────────────────────────
-#> # A tibble: 4 × 3
-#>   hemi  region                        label                              
-#>   <chr> <chr>                         <chr>                              
-#> 1 left  Cerebellar_Cortex_Left        left_Cerebellar_Cortex_Left        
-#> 2 right Cerebellar_Cortex_Right       right_Cerebellar_Cortex_Right      
-#> 3 left  Cerebellar_White_Matter_Left  left_Cerebellar_White_Matter_Left  
+#>    hemi                        region                               label
+#> 1  left        Cerebellar_Cortex_Left         left_Cerebellar_Cortex_Left
+#> 2 right       Cerebellar_Cortex_Right       right_Cerebellar_Cortex_Right
+#> 3  left  Cerebellar_White_Matter_Left   left_Cerebellar_White_Matter_Left
 #> 4 right Cerebellar_White_Matter_Right right_Cerebellar_White_Matter_Right
 plot(ho2_cereb())
 ```
