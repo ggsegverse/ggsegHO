@@ -13,15 +13,7 @@ describe("hoCort atlas", {
   })
 
   it("renders with ggseg", {
-    p <- ggplot() +
-      geom_brain(
-        atlas = hoCort(),
-        mapping = aes(fill = label),
-        position = position_brain(hemi ~ view),
-        show.legend = FALSE
-      ) +
-      theme_void()
-    expect_doppelganger("hoCort-2d", p)
+    expect_doppelganger("hoCort-2d", ggseg::brain_test_plot(hoCort()))
   })
 })
 
@@ -36,14 +28,10 @@ describe("hoSub atlas", {
   })
 
   it("renders with ggseg", {
-    p <- ggplot() +
-      geom_brain(
-        atlas = hoSub(),
-        mapping = aes(fill = label),
-        show.legend = FALSE
-      ) +
-      theme_void()
-    expect_doppelganger("hoSub-2d", p)
+    expect_doppelganger(
+      "hoSub-2d",
+      ggseg::brain_test_plot(hoSub(), position = ggseg::position_brain())
+    )
   })
 })
 
@@ -62,15 +50,7 @@ describe("ho2_cort atlas", {
   })
 
   it("renders with ggseg", {
-    p <- ggplot() +
-      geom_brain(
-        atlas = ho2_cort(),
-        mapping = aes(fill = label),
-        position = position_brain(hemi ~ view),
-        show.legend = FALSE
-      ) +
-      theme_void()
-    expect_doppelganger("ho2_cort-2d", p)
+    expect_doppelganger("ho2_cort-2d", ggseg::brain_test_plot(ho2_cort()))
   })
 })
 
@@ -85,14 +65,10 @@ describe("ho2_sub atlas", {
   })
 
   it("renders with ggseg", {
-    p <- ggplot() +
-      geom_brain(
-        atlas = ho2_sub(),
-        mapping = aes(fill = label),
-        show.legend = FALSE
-      ) +
-      theme_void()
-    expect_doppelganger("ho2_sub-2d", p)
+    expect_doppelganger(
+      "ho2_sub-2d",
+      ggseg::brain_test_plot(ho2_sub(), position = ggseg::position_brain())
+    )
   })
 })
 
@@ -107,13 +83,9 @@ describe("ho2_cereb atlas", {
   })
 
   it("renders with ggseg", {
-    p <- ggplot() +
-      geom_brain(
-        atlas = ho2_cereb(),
-        mapping = aes(fill = label),
-        show.legend = FALSE
-      ) +
-      theme_void()
-    expect_doppelganger("ho2_cereb-2d", p)
+    expect_doppelganger(
+      "ho2_cereb-2d",
+      ggseg::brain_test_plot(ho2_cereb(), position = ggseg::position_brain())
+    )
   })
 })
