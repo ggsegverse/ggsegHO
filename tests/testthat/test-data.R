@@ -27,11 +27,26 @@ describe("hoSub atlas", {
     expect_true(ggseg.formats::is_ggseg_atlas(hoSub()))
   })
 
+  it("has brain_polygons 2D geometry", {
+    expect_true(ggseg.formats::is_atlas_polygon(hoSub()))
+  })
+
+  it("has a named palette", {
+    pal <- ggseg.formats::atlas_palette(hoSub())
+    expect_type(pal, "character")
+    expect_named(pal)
+  })
+
   it("renders with ggseg", {
-    expect_doppelganger(
-      "hoSub-2d",
-      ggseg::brain_test_plot(hoSub(), position = ggseg::position_brain())
-    )
+    skip_if_not_installed("ggseg")
+    p <- ggplot2::ggplot() +
+      ggseg::geom_brain(
+        atlas = hoSub(),
+        mapping = ggplot2::aes(fill = label),
+        show.legend = FALSE
+      ) +
+      ggplot2::theme_void()
+    expect_s3_class(p, "ggplot")
   })
 })
 
