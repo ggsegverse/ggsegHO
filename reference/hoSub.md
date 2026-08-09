@@ -40,27 +40,26 @@ Other subcortical_atlases:
 ``` r
 hoSub()
 #> 
-#> ── ho_subcortical ggseg atlas ──────────────────────────────────────────────────
+#> ── hoSub ggseg atlas ───────────────────────────────────────────────────────────
 #> Type: subcortical
-#> Regions: 6
+#> Regions: 8
 #> Hemispheres: left, NA, right
-#> Views: axial_1, axial_2, axial_3, axial_4, axial_5, coronal_1, coronal_2,
-#> coronal_3, coronal_4, sagittal
+#> Views: axial_1, axial_2, axial_3, coronal_1, coronal_2, coronal_3
 #> Palette: ✔
 #> Rendering: ✔ ggseg
 #> ✔ ggseg3d (meshes)
 #> ────────────────────────────────────────────────────────────────────────────────
-#>     hemi            region                   label
-#> 1   left lateral ventricle  Left_Lateral_Ventricle
-#> 2   left          thalamus           Left_Thalamus
-#> 3   <NA>        brain stem              Brain-Stem
-#> 4   left       hippocampus        Left_Hippocampus
-#> 5   left          amygdala           Left_Amygdala
-#> 6   left         accumbens          Left_Accumbens
-#> 7  right lateral ventricle Right_Lateral_Ventricle
-#> 8  right          thalamus          Right_Thalamus
-#> 9  right       hippocampus       Right_Hippocampus
-#> 10 right          amygdala          Right_Amygdala
-#> ... with 1 more row
+#>     hemi      region            label
+#> 1   left    thalamus    Left-Thalamus
+#> 2   left     caudate     Left-Caudate
+#> 3   left     putamen     Left-Putamen
+#> 4   left    pallidum    Left-Pallidum
+#> 5   <NA>  brain stem       Brain-Stem
+#> 6   left hippocampus Left-Hippocampus
+#> 7   left    amygdala    Left-Amygdala
+#> 8   left   accumbens   Left-Accumbens
+#> 9  right    thalamus   Right-Thalamus
+#> 10 right     caudate    Right-Caudate
+#> ... with 5 more rows
 plot(hoSub())
 ```

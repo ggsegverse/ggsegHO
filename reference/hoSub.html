@@ -13,7 +13,7 @@ ggseg3d::ggseg3d()."><meta property="og:image" content="https://ggseg.github.io/
 
     <a class="navbar-brand me-2" href="../index.html">ggsegHO</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.0.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.0.2</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -82,28 +82,27 @@ distributed with FSL. Contains 2D polygon geometry for
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">hoSub</span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">──</span> <span style="font-weight: bold;">ho_subcortical ggseg atlas</span> <span style="color: #00BBBB;">──────────────────────────────────────────────────</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">──</span> <span style="font-weight: bold;">hoSub ggseg atlas</span> <span style="color: #00BBBB;">───────────────────────────────────────────────────────────</span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Type: subcortical</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Regions:</span> 6</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Regions:</span> 8</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Hemispheres:</span> left, NA, right</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Views:</span> axial_1, axial_2, axial_3, axial_4, axial_5, coronal_1, coronal_2,</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> coronal_3, coronal_4, sagittal</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Views:</span> axial_1, axial_2, axial_3, coronal_1, coronal_2, coronal_3</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Palette:</span> <span style="color: #00BB00;">✔</span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Rendering:</span> <span style="color: #00BB00;">✔</span> ggseg</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> ggseg3d (meshes)</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> ────────────────────────────────────────────────────────────────────────────────</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     hemi            region                   label</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1   left lateral ventricle  Left_Lateral_Ventricle</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2   left          thalamus           Left_Thalamus</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3   &lt;NA&gt;        brain stem              Brain-Stem</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4   left       hippocampus        Left_Hippocampus</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5   left          amygdala           Left_Amygdala</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6   left         accumbens          Left_Accumbens</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7  right lateral ventricle Right_Lateral_Ventricle</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8  right          thalamus          Right_Thalamus</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9  right       hippocampus       Right_Hippocampus</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10 right          amygdala          Right_Amygdala</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-style: italic;">... with 1 more row</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     hemi      region            label</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1   left    thalamus    Left-Thalamus</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2   left     caudate     Left-Caudate</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3   left     putamen     Left-Putamen</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4   left    pallidum    Left-Pallidum</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5   &lt;NA&gt;  brain stem       Brain-Stem</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6   left hippocampus Left-Hippocampus</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7   left    amygdala    Left-Amygdala</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8   left   accumbens   Left-Accumbens</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 9  right    thalamus   Right-Thalamus</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 10 right     caudate    Right-Caudate</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-style: italic;">... with 5 more rows</span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="fu">hoSub</span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="hoSub-1.png" alt="" width="700" height="433"></span>
 </code></pre></div>

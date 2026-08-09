@@ -1,5 +1,16 @@
 # Changelog
 
+## ggsegHO 2.0.2
+
+- `hoSub` now renders on a **grey-brain anatomical context**. The
+  Harvard-Oxford subcortical structures are registered into the
+  fsaverage5 `aseg` and the surrounding
+  cortex/white-matter/cerebellum/brainstem drawn as grey context, so the
+  coloured structures sit inside a recognisable brain silhouette —
+  matching the FreeSurfer subcortical atlases. Regenerating requires
+  FreeSurfer 7.4.1. Also swaps the brittle `hoSub-2d` vdiffr snapshot
+  for structural assertions.
+
 ## ggsegHO 2.0.1
 
 - Atlas 2D geometry migrated to the sf-optional `brain_polygons` format

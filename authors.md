@@ -14,13 +14,13 @@ Source:
 [`DESCRIPTION`](https://github.com/ggsegverse/ggsegHO/blob/main/DESCRIPTION)
 
 Mowinckel A, Vidal-Pineiro D (2026). *ggsegHO: Harvard-Oxford Atlas for
-the 'ggseg' Ecosystem*. R package version 2.0.1,
+the 'ggseg' Ecosystem*. R package version 2.0.2,
 <https://github.com/ggsegverse/ggsegHO>.
 
     @Manual{,
       title = {ggsegHO: Harvard-Oxford Atlas for the 'ggseg' Ecosystem},
       author = {Athanasia Mo Mowinckel and Didac Vidal-Pineiro},
       year = {2026},
-      note = {R package version 2.0.1},
+      note = {R package version 2.0.2},
       url = {https://github.com/ggsegverse/ggsegHO},
     }
