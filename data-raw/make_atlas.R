@@ -147,22 +147,11 @@ ho <- create_wholebrain_from_volume(
 
 # --- Subcortical on grey-brain anatomical context ---
 # The HO subcortical structures are aseg-equivalent, so rather than let them
-# float alone we register them into the fsaverage5 aseg and render on grey
-# context (cortex / white matter / cerebellum / brainstem), matching the
-# FreeSurfer subcortical atlases. Requires FreeSurfer 7.4.1 + fsaverage5.
-fs_home <- Sys.getenv("FREESURFER_HOME", "/Applications/freesurfer/7.4.1")
-fs5_aseg <- file.path(fs_home, "subjects/fsaverage5/mri/aseg.mgz")
-mni_reg <- file.path(fs_home, "average/mni152.register.dat")
-lut_file <- file.path(fs_home, "FreeSurferColorLUT.txt")
-fs <- function(...) {
-  system2(
-    file.path(fs_home, "bin", ..1),
-    c(...)[-1],
-    stdout = FALSE,
-    stderr = FALSE
-  )
-}
-
+# float alone we embed them into the fsaverage5 aseg with
+# ggseg.extra::prepare_subcortical_mni152() and render on grey context (cortex /
+# white matter / cerebellum / brain-stem), matching the FreeSurfer subcortical
+# atlases. Requires FreeSurfer 7.4.1 + fsaverage5.
+#
 # HO subcortical id -> aseg-style name (lateral ventricles excluded); remap by
 # +300 so ids never collide with aseg or HO cortical labels.
 ho_sub_map <- c(
@@ -192,62 +181,6 @@ for (i in seq_along(ho_sub_ids)) {
 }
 writeNifti(asNifti(sub_arr, reference = vol), sub_mni)
 
-sub_fs5 <- "data-raw/ho_sub_fs5.mgz"
-if (!file.exists(sub_fs5)) {
-  fs(
-    "mri_vol2vol",
-    "--mov",
-    sub_mni,
-    "--targ",
-    fs5_aseg,
-    "--reg",
-    mni_reg,
-    "--o",
-    sub_fs5,
-    "--nearest"
-  )
-}
-
-seg_file <- "data-raw/ho_sub_embedded.nii.gz"
-if (!file.exists(seg_file)) {
-  aseg_nii <- file.path(tempdir(), "fs5_aseg.nii.gz")
-  fs("mri_convert", "-ot", "nii", fs5_aseg, aseg_nii)
-  sub_nii <- file.path(tempdir(), "ho_fs5.nii.gz")
-  fs("mri_convert", "-ot", "nii", sub_fs5, sub_nii)
-  aseg <- readNifti(aseg_nii)
-  emb <- as.integer(round(aseg))
-  dim(emb) <- dim(aseg)
-  hof <- as.integer(round(readNifti(sub_nii)))
-  emb[
-    emb %in% c(10, 49, 11, 50, 12, 51, 13, 52, 17, 53, 18, 54, 26, 58, 16)
-  ] <- 0L
-  hit <- hof > 0L
-  emb[hit] <- hof[hit]
-  writeNifti(
-    asNifti(array(emb, dim = dim(aseg)), reference = aseg),
-    seg_file,
-    datatype = "int32"
-  )
-}
-
-parse_fs_lut <- function(path) {
-  lines <- trimws(readLines(path, warn = FALSE))
-  lines <- lines[nzchar(lines) & !startsWith(lines, "#")]
-  parts <- strsplit(lines, "[[:space:]]+")
-  parts <- parts[lengths(parts) >= 5]
-  data.frame(
-    idx = as.integer(vapply(parts, `[`, "", 1)),
-    label = vapply(parts, `[`, "", 2),
-    R = as.integer(vapply(parts, `[`, "", 3)),
-    G = as.integer(vapply(parts, `[`, "", 4)),
-    B = as.integer(vapply(parts, `[`, "", 5)),
-    A = 0L,
-    stringsAsFactors = FALSE
-  )
-}
-present <- sort(setdiff(unique(as.integer(round(readNifti(seg_file)))), 0))
-std_lut <- parse_fs_lut(lut_file)
-std_lut <- std_lut[std_lut$idx %in% setdiff(present, new_ids), ]
 set.seed(7)
 foc_cols <- grDevices::hcl.colors(length(new_ids), "Dark 3")
 foc_rgb <- grDevices::col2rgb(foc_cols)
@@ -260,18 +193,25 @@ foc_lut <- data.frame(
   A = 0L,
   stringsAsFactors = FALSE
 )
-combined_lut <- rbind(std_lut, foc_lut)
+
+# A parcel covers the brain-stem, so aseg 16 is replaced in addition to the
+# lumped subcortical structures.
+merged <- prepare_subcortical_mni152(
+  input_volume = sub_mni,
+  labels = new_ids,
+  lut = foc_lut,
+  replace_labels = c(aseg_subcortical_labels(), 16L)
+)
 
 sub_slabs <- subcortical_slabs(
-  seg_file,
+  merged$volume,
   labels = new_ids,
   coronal = 3,
   axial = 3,
   pad = 2
 )
 ho_sub_raw <- create_subcortical_from_volume(
-  input_volume = seg_file,
-  input_lut = combined_lut,
+  input_volume = merged,
   atlas_name = "hoSub",
   output_dir = "data-raw",
   slabs = sub_slabs,
