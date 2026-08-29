@@ -28,7 +28,6 @@ Makris, et al. (2006) Schizophrenia research 83(2-3):155-151
 ## See also
 
 Other ggseg_atlases:
-[`ho2_cereb()`](https://ggsegverse.github.io/ggsegHO/reference/ho2_cereb.md),
 [`ho2_cort()`](https://ggsegverse.github.io/ggsegHO/reference/ho2_cort.md),
 [`ho2_sub()`](https://ggsegverse.github.io/ggsegHO/reference/ho2_sub.md),
 [`ho_sub()`](https://ggsegverse.github.io/ggsegHO/reference/ho_sub.md)

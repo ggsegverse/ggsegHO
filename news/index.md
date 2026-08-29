@@ -24,21 +24,29 @@
   takes: the parcels are embedded in the fsaverage5 `aseg` through
   `ggseg.extra::prepare_subcortical_mni152()`, the slice positions come
   from `subcortical_slabs()` rather than being hard-coded, and the
-  surrounding cortex, white matter, cerebellum and brain-stem are drawn
-  as grey context. Previously the structures floated on an empty canvas
-  across 12 cramped views.
+  surrounding cortex and white matter are drawn as grey context.
+  Previously the structures floated on an empty canvas across 12 cramped
+  views.
 
-- [`ho2_cereb()`](https://ggsegverse.github.io/ggsegHO/reference/ho2_cereb.md)
-  is rebuilt the same way, replacing the aseg cerebellum. It previously
-  drew as a single undifferentiated mass, and its four structures
-  carried doubled-up labels (`left_Cerebellar_Cortex_Left`); they are
-  now named once, from the published HOA-2 lookup table.
+- **`ho2_cereb()` is removed**; its four structures are part of
+  [`ho2_sub()`](https://ggsegverse.github.io/ggsegHO/reference/ho2_sub.md).
+  HOA-2 divides the cerebellum into grey and white matter only, which is
+  a tissue segmentation like the rest of the subcortical volume rather
+  than a cerebellar parcellation in the sense of SUIT or Buckner.
+  [`ho2_sub()`](https://ggsegverse.github.io/ggsegHO/reference/ho2_sub.md)
+  therefore carries 23 structures across 7 views, including a sagittal
+  cut that shows the cerebellum along its length. For a parcellated
+  cerebellum, use `ggsegCerebellum`.
 
-- Both keep the colours the HOA-2 authors distribute, in which a
+  The cerebellar structures previously drew as a single undifferentiated
+  mass and carried doubled-up labels (`left_Cerebellar_Cortex_Left`);
+  they are now named once, from the published HOA-2 lookup table.
+
+- The atlas keeps the colours the HOA-2 authors distribute, in which a
   structure and its contralateral twin share a colour.
 
-- The build scripts for all five atlases are now in `data-raw/`. The
-  HOA-2 scripts had never been committed, so those atlases could not be
+- The build scripts for every atlas are now in `data-raw/`. The HOA-2
+  scripts had never been committed, so those atlases could not be
   reproduced from the repository.
 
 ## ggsegHO 2.0.2

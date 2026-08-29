@@ -18,8 +18,8 @@
 <link href="deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
 <link href="deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
 <script src="deps/headroom-0.11.0/headroom.min.js"></script><script src="deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="deps/search-1.0.0/fuse.min.js"></script><script src="deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="pkgdown.js"></script><meta property="og:title" content="Harvard-Oxford Atlas for the ggseg Ecosystem">
-<meta name="description" content="Harvard-Oxford cortical, subcortical, and cerebellar atlases for the ggseg ecosystem. Includes the original Harvard-Oxford atlas (FSL) and the Harvard-Oxford Atlas 2.0 (HOA-2, Rushmore et al. 2022) as ggseg_atlas objects with 2D polygon and 3D mesh geometry.">
-<meta property="og:description" content="Harvard-Oxford cortical, subcortical, and cerebellar atlases for the ggseg ecosystem. Includes the original Harvard-Oxford atlas (FSL) and the Harvard-Oxford Atlas 2.0 (HOA-2, Rushmore et al. 2022) as ggseg_atlas objects with 2D polygon and 3D mesh geometry.">
+<meta name="description" content="Harvard-Oxford cortical and subcortical atlases for the ggseg ecosystem. Includes the original Harvard-Oxford atlas (FSL) and the Harvard-Oxford Atlas 2.0 (HOA-2, Rushmore et al. 2022) as ggseg_atlas objects with 2D polygon and 3D mesh geometry.">
+<meta property="og:description" content="Harvard-Oxford cortical and subcortical atlases for the ggseg ecosystem. Includes the original Harvard-Oxford atlas (FSL) and the Harvard-Oxford Atlas 2.0 (HOA-2, Rushmore et al. 2022) as ggseg_atlas objects with 2D polygon and 3D mesh geometry.">
 <meta property="og:image" content="https://ggsegverse.github.io/ggsegHO/logo.svg">
 </head>
 <body>
@@ -69,7 +69,7 @@
 </div>
 <!-- badges: start -->
 
-<p>Harvard-Oxford cortical, subcortical, and cerebellar atlases for the ggseg ecosystem. Includes the original Harvard-Oxford atlas (FSL) and the Harvard-Oxford Atlas 2.0 (HOA-2).</p>
+<p>Harvard-Oxford cortical and subcortical atlases for the ggseg ecosystem. Includes the original Harvard-Oxford atlas (FSL) and the Harvard-Oxford Atlas 2.0 (HOA-2).</p>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
@@ -113,16 +113,10 @@
 <div class="section level2">
 <h2 id="hoa-2-subcortical">HOA-2 subcortical<a class="anchor" aria-label="anchor" href="#hoa-2-subcortical"></a>
 </h2>
+<p>The deep grey structures, the brain-stem, and the cerebellum split into grey and white matter — HOA-2 segments the cerebellum by tissue rather than parcellating it, so those structures belong here.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="fu"><a href="reference/ho2_sub.html">ho2_sub</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p><img src="reference/figures/README-ho2-sub-1.png" style="width:100.0%"></p>
-</div>
-<div class="section level2">
-<h2 id="hoa-2-cerebellar">HOA-2 cerebellar<a class="anchor" aria-label="anchor" href="#hoa-2-cerebellar"></a>
-</h2>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="fu"><a href="reference/ho2_cereb.html">ho2_cereb</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p><img src="reference/figures/README-ho2-cereb-1.png" style="width:100.0%"></p>
 </div>
 <div class="section level2">
 <h2 id="data-source">Data source<a class="anchor" aria-label="anchor" href="#data-source"></a>

@@ -1,8 +1,8 @@
 # ggsegHO
 
-Harvard-Oxford cortical, subcortical, and cerebellar atlases for the
-ggseg ecosystem. Includes the original Harvard-Oxford atlas (FSL) and
-the Harvard-Oxford Atlas 2.0 (HOA-2).
+Harvard-Oxford cortical and subcortical atlases for the ggseg ecosystem.
+Includes the original Harvard-Oxford atlas (FSL) and the Harvard-Oxford
+Atlas 2.0 (HOA-2).
 
 ## Installation
 
@@ -59,21 +59,16 @@ plot(ho2_cort())
 
 ## HOA-2 subcortical
 
+The deep grey structures, the brain-stem, and the cerebellum split into
+grey and white matter — HOA-2 segments the cerebellum by tissue rather
+than parcellating it, so those structures belong here.
+
 ``` r
 
 plot(ho2_sub())
 ```
 
 ![](reference/figures/README-ho2-sub-1.png)
-
-## HOA-2 cerebellar
-
-``` r
-
-plot(ho2_cereb())
-```
-
-![](reference/figures/README-ho2-cereb-1.png)
 
 ## Data source
 
