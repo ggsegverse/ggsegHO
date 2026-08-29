@@ -50,7 +50,7 @@ describe("ho_sub atlas", {
   })
 })
 
-describe("deprecated atlases", {
+describe("deprecated camelCase names", {
   it("hoCort() warns and returns ho_cort()", {
     expect_snapshot(x <- hoCort())
     expect_identical(x, ho_cort())
@@ -61,10 +61,6 @@ describe("deprecated atlases", {
     expect_identical(x, ho_sub())
   })
 
-  it("ho2_cereb() warns and returns ho2_sub()", {
-    expect_snapshot(x <- ho2_cereb())
-    expect_identical(x, ho2_sub())
-  })
 })
 
 describe("ho2_cort atlas", {

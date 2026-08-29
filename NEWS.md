@@ -16,14 +16,13 @@
   cortex and white matter are drawn as grey context. Previously the structures
   floated on an empty canvas across 12 cramped views.
 
-- **`ho2_cereb()` is deprecated**; its four structures are part of `ho2_sub()`.
+- **`ho2_cereb()` is removed**; its four structures are part of `ho2_sub()`.
   HOA-2 divides the cerebellum into grey and white matter only, which is a
   tissue segmentation like the rest of the subcortical volume rather than a
   cerebellar parcellation in the sense of SUIT or Buckner. `ho2_sub()`
   therefore carries 23 structures across 7 views, including a sagittal cut
-  that shows the cerebellum along its length. `ho2_cereb()` returns
-  `ho2_sub()` with a warning. For a parcellated cerebellum, use
-  `ggsegCerebellum`.
+  that shows the cerebellum along its length. For a parcellated cerebellum,
+  use `ggsegCerebellum`.
 
   The cerebellar structures previously drew as a single undifferentiated mass
   and carried doubled-up labels (`left_Cerebellar_Cortex_Left`); they are now
