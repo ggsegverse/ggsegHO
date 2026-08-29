@@ -28,13 +28,13 @@ Rushmore RJ, et al. (2022). Frontiers in Neuroanatomy 16:1035420.
 ## See also
 
 Other ggseg_atlases:
-[`ho2_cereb()`](https://ggseg.github.io/ggsegHO/reference/ho2_cereb.md),
-[`ho2_sub()`](https://ggseg.github.io/ggsegHO/reference/ho2_sub.md),
-[`hoCort()`](https://ggseg.github.io/ggsegHO/reference/hoCort.md),
-[`hoSub()`](https://ggseg.github.io/ggsegHO/reference/hoSub.md)
+[`ho2_cereb()`](https://ggsegverse.github.io/ggsegHO/reference/ho2_cereb.md),
+[`ho2_sub()`](https://ggsegverse.github.io/ggsegHO/reference/ho2_sub.md),
+[`ho_cort()`](https://ggsegverse.github.io/ggsegHO/reference/ho_cort.md),
+[`ho_sub()`](https://ggsegverse.github.io/ggsegHO/reference/ho_sub.md)
 
 Other cortical_atlases:
-[`hoCort()`](https://ggseg.github.io/ggsegHO/reference/hoCort.md)
+[`ho_cort()`](https://ggsegverse.github.io/ggsegHO/reference/ho_cort.md)
 
 ## Examples
 

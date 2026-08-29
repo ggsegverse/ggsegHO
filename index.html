@@ -20,7 +20,7 @@
 <script src="deps/headroom-0.11.0/headroom.min.js"></script><script src="deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="deps/search-1.0.0/fuse.min.js"></script><script src="deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="pkgdown.js"></script><meta property="og:title" content="Harvard-Oxford Atlas for the ggseg Ecosystem">
 <meta name="description" content="Harvard-Oxford cortical, subcortical, and cerebellar atlases for the ggseg ecosystem. Includes the original Harvard-Oxford atlas (FSL) and the Harvard-Oxford Atlas 2.0 (HOA-2, Rushmore et al. 2022) as ggseg_atlas objects with 2D polygon and 3D mesh geometry.">
 <meta property="og:description" content="Harvard-Oxford cortical, subcortical, and cerebellar atlases for the ggseg ecosystem. Includes the original Harvard-Oxford atlas (FSL) and the Harvard-Oxford Atlas 2.0 (HOA-2, Rushmore et al. 2022) as ggseg_atlas objects with 2D polygon and 3D mesh geometry.">
-<meta property="og:image" content="https://ggseg.github.io/ggsegHO/logo.svg">
+<meta property="og:image" content="https://ggsegverse.github.io/ggsegHO/logo.svg">
 </head>
 <body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
@@ -30,7 +30,7 @@
 
     <a class="navbar-brand me-2" href="index.html">ggsegHO</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.0.2</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.1.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -46,7 +46,7 @@
 <li class="nav-item"><form class="form-inline" role="search">
  <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="search.json">
 </form></li>
-<li class="nav-item"><a class="external-link nav-link" href="https://github.com/ggseg/ggsegHO" aria-label="GitHub"><span class="fa fa-github"></span></a></li>
+<li class="nav-item"><a class="external-link nav-link" href="https://github.com/ggsegverse/ggsegHO" aria-label="GitHub"><span class="fa fa-github"></span></a></li>
 <li class="nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-lightswitch" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true" aria-label="Light switch"><span class="fa fa-sun"></span></button>
   <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdown-lightswitch">
@@ -73,10 +73,10 @@
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
-<p>We recommend installing the ggseg-atlases through the ggseg <a href="https://ggseg.r-universe.dev/ui#builds" class="external-link">r-universe</a>:</p>
+<p>We recommend installing the ggseg-atlases through the ggseg <a href="https://ggsegverse.r-universe.dev/#builds" class="external-link">r-universe</a>:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">options</a></span><span class="op">(</span>repos <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span></span>
-<span>  ggseg <span class="op">=</span> <span class="st">"https://ggseg.r-universe.dev"</span>,</span>
+<span>  ggsegverse <span class="op">=</span> <span class="st">"https://ggsegverse.r-universe.dev"</span>,</span>
 <span>  CRAN <span class="op">=</span> <span class="st">"https://cloud.r-project.org"</span></span>
 <span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
@@ -93,14 +93,14 @@
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggsegverse.github.io/ggseg/" class="external-link">ggseg</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/ggsegverse/ggsegHO" class="external-link">ggsegHO</a></span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="fu"><a href="reference/hoCort.html">hoCort</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="fu"><a href="reference/ho_cort.html">ho_cort</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p><img src="reference/figures/README-ho-cort-1.png" style="width:100.0%"></p>
 </div>
 <div class="section level2">
 <h2 id="harvard-oxford-subcortical">Harvard-Oxford subcortical<a class="anchor" aria-label="anchor" href="#harvard-oxford-subcortical"></a>
 </h2>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="fu"><a href="reference/hoSub.html">hoSub</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="fu"><a href="reference/ho_sub.html">ho_sub</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p><img src="reference/figures/README-ho-sub-1.png" style="width:100.0%"></p>
 </div>
 <div class="section level2">
@@ -173,7 +173,7 @@
 <h2 data-toc-skip>Dev status</h2>
 <ul class="list-unstyled">
 <li><a href="https://github.com/ggsegverse/ggsegHO/actions/workflows/R-CMD-check.yaml" class="external-link"><img src="https://github.com/ggsegverse/ggsegHO/actions/workflows/R-CMD-check.yaml/badge.svg" alt="R-CMD-check"></a></li>
-<li><a href="https://ggseg.r-universe.dev/ggsegHO" class="external-link"><img src="https://ggseg.r-universe.dev/badges/ggsegHO.png" alt="r-universe"></a></li>
+<li><a href="https://ggsegverse.r-universe.dev/ggsegHO" class="external-link"><img src="https://ggsegverse.r-universe.dev/badges/ggsegHO.png" alt="r-universe"></a></li>
 </ul>
 </div>
 

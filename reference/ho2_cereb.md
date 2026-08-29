@@ -26,10 +26,10 @@ Rushmore RJ, et al. (2022). Frontiers in Neuroanatomy 16:1035420.
 ## See also
 
 Other ggseg_atlases:
-[`ho2_cort()`](https://ggseg.github.io/ggsegHO/reference/ho2_cort.md),
-[`ho2_sub()`](https://ggseg.github.io/ggsegHO/reference/ho2_sub.md),
-[`hoCort()`](https://ggseg.github.io/ggsegHO/reference/hoCort.md),
-[`hoSub()`](https://ggseg.github.io/ggsegHO/reference/hoSub.md)
+[`ho2_cort()`](https://ggsegverse.github.io/ggsegHO/reference/ho2_cort.md),
+[`ho2_sub()`](https://ggsegverse.github.io/ggsegHO/reference/ho2_sub.md),
+[`ho_cort()`](https://ggsegverse.github.io/ggsegHO/reference/ho_cort.md),
+[`ho_sub()`](https://ggsegverse.github.io/ggsegHO/reference/ho_sub.md)
 
 ## Examples
 
@@ -38,17 +38,17 @@ ho2_cereb()
 #> 
 #> ── ho2_cereb ggseg atlas ───────────────────────────────────────────────────────
 #> Type: cerebellar
-#> Regions: 4
+#> Regions: 2
 #> Hemispheres: left, right
-#> Views: flatmap
+#> Views: sagittal_1, axial_1, axial_2, coronal_1, coronal_2
 #> Palette: ✔
 #> Rendering: ✔ ggseg
-#> ✔ ggseg3d (vertices)
+#> ✔ ggseg3d (meshes)
 #> ────────────────────────────────────────────────────────────────────────────────
-#>    hemi                        region                               label
-#> 1  left        Cerebellar_Cortex_Left         left_Cerebellar_Cortex_Left
-#> 2 right       Cerebellar_Cortex_Right       right_Cerebellar_Cortex_Right
-#> 3  left  Cerebellar_White_Matter_Left   left_Cerebellar_White_Matter_Left
-#> 4 right Cerebellar_White_Matter_Right right_Cerebellar_White_Matter_Right
+#>    hemi                  region                         label
+#> 1  left       cerebellar cortex        Cerebellar_Cortex_Left
+#> 2 right       cerebellar cortex       Cerebellar_Cortex_Right
+#> 3  left cerebellar white matter  Cerebellar_White_Matter_Left
+#> 4 right cerebellar white matter Cerebellar_White_Matter_Right
 plot(ho2_cereb())
 ```

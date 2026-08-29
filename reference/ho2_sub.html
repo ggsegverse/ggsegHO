@@ -5,7 +5,7 @@ Contains 2D polygon geometry for ggseg::geom_brain() and
 3D mesh data for ggseg3d::ggseg3d()."><meta property="og:description" content="Subcortical segmentation with 19 structures from the
 Harvard-Oxford Atlas 2.0 (HOA-2), based on 100 HCP subjects.
 Contains 2D polygon geometry for ggseg::geom_brain() and
-3D mesh data for ggseg3d::ggseg3d()."><meta property="og:image" content="https://ggseg.github.io/ggsegHO/logo.svg"></head><body>
+3D mesh data for ggseg3d::ggseg3d()."><meta property="og:image" content="https://ggsegverse.github.io/ggsegHO/logo.svg"></head><body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
 
 
@@ -13,7 +13,7 @@ Contains 2D polygon geometry for ggseg::geom_brain() and
 
     <a class="navbar-brand me-2" href="../index.html">ggsegHO</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.0.2</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.1.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -25,7 +25,7 @@ Contains 2D polygon geometry for ggseg::geom_brain() and
 <li class="nav-item"><a class="nav-link" href="../news/index.html">Changelog</a></li>
       </ul><ul class="navbar-nav"><li class="nav-item"><form class="form-inline" role="search">
  <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="../search.json"></form></li>
-<li class="nav-item"><a class="external-link nav-link" href="https://github.com/ggseg/ggsegHO" aria-label="GitHub"><span class="fa fa-github"></span></a></li>
+<li class="nav-item"><a class="external-link nav-link" href="https://github.com/ggsegverse/ggsegHO" aria-label="GitHub"><span class="fa fa-github"></span></a></li>
 <li class="nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-lightswitch" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true" aria-label="Light switch"><span class="fa fa-sun"></span></button>
   <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdown-lightswitch"><li><button class="dropdown-item" data-bs-theme-value="light"><span class="fa fa-sun"></span> Light</button></li>
@@ -72,10 +72,10 @@ Neuroanatomy 16:1035420.
     <div class="dont-index"><p>Other ggseg_atlases:
 <code><a href="ho2_cereb.html">ho2_cereb()</a></code>,
 <code><a href="ho2_cort.html">ho2_cort()</a></code>,
-<code><a href="hoCort.html">hoCort()</a></code>,
-<code><a href="hoSub.html">hoSub()</a></code></p>
+<code><a href="ho_cort.html">ho_cort()</a></code>,
+<code><a href="ho_sub.html">ho_sub()</a></code></p>
 <p>Other subcortical_atlases:
-<code><a href="hoSub.html">hoSub()</a></code></p></div>
+<code><a href="ho_sub.html">ho_sub()</a></code></p></div>
     </div>
 
     <div class="section level2">
@@ -84,25 +84,24 @@ Neuroanatomy 16:1035420.
 <span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">──</span> <span style="font-weight: bold;">ho2_sub ggseg atlas</span> <span style="color: #00BBBB;">─────────────────────────────────────────────────────────</span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Type: subcortical</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Regions:</span> 19</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Regions:</span> 10</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Hemispheres:</span> left, right, NA</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Views:</span> axial_2, axial_3, axial_4, axial_5, coronal_3, coronal_4, coronal_5,</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> sagittal, axial_1, coronal_1, coronal_2, axial_6</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Views:</span> axial_1, axial_2, axial_3, coronal_1, coronal_2, coronal_3</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Palette:</span> <span style="color: #00BB00;">✔</span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Rendering:</span> <span style="color: #00BB00;">✔</span> ggseg</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> ggseg3d (meshes)</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> ────────────────────────────────────────────────────────────────────────────────</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     hemi                  region                   label</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1   left  nucleus accumbens left  Nucleus_Accumbens_Left</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2  right nucleus accumbens right Nucleus_Accumbens_Right</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3   left            caudate left            Caudate_Left</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4  right           caudate right           Caudate_Right</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5   left            putamen left            Putamen_Left</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6  right           putamen right           Putamen_Right</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7   left    globus pallidus left    Globus_Pallidus_Left</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8  right   globus pallidus right   Globus_Pallidus_Right</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9   &lt;NA&gt;               brainstem               Brainstem</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10  left           thalamus left           Thalamus_Left</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     hemi            region                   label</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1   left nucleus accumbens  Nucleus_Accumbens_Left</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2  right nucleus accumbens Nucleus_Accumbens_Right</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3   left           caudate            Caudate_Left</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4  right           caudate           Caudate_Right</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5   left           putamen            Putamen_Left</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6  right           putamen           Putamen_Right</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7   left   globus pallidus    Globus_Pallidus_Left</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8  right   globus pallidus   Globus_Pallidus_Right</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 9   &lt;NA&gt;         brainstem               Brainstem</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 10  left          thalamus           Thalamus_Left</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-style: italic;">... with 9 more rows</span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="fu">ho2_sub</span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="ho2_sub-1.png" alt="" width="700" height="433"></span>

@@ -7,12 +7,12 @@ the Harvard-Oxford Atlas 2.0 (HOA-2).
 ## Installation
 
 We recommend installing the ggseg-atlases through the ggseg
-[r-universe](https://ggseg.r-universe.dev/ui#builds):
+[r-universe](https://ggsegverse.r-universe.dev/#builds):
 
 ``` r
 
 options(repos = c(
-  ggseg = "https://ggseg.r-universe.dev",
+  ggsegverse = "https://ggsegverse.r-universe.dev",
   CRAN = "https://cloud.r-project.org"
 ))
 
@@ -34,7 +34,7 @@ pak::pak("ggsegverse/ggsegHO")
 library(ggseg)
 library(ggsegHO)
 
-plot(hoCort())
+plot(ho_cort())
 ```
 
 ![](reference/figures/README-ho-cort-1.png)
@@ -43,7 +43,7 @@ plot(hoCort())
 
 ``` r
 
-plot(hoSub())
+plot(ho_sub())
 ```
 
 ![](reference/figures/README-ho-sub-1.png)

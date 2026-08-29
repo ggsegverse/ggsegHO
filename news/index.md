@@ -1,5 +1,46 @@
 # Changelog
 
+## ggsegHO 2.1.0
+
+### Atlas naming
+
+- The FSL Harvard-Oxford atlases are renamed to snake_case, matching the
+  HOA-2 atlases and the rest of the ggsegverse:
+  [`hoCort()`](https://ggsegverse.github.io/ggsegHO/reference/ggsegHO-deprecated.md)
+  is now
+  [`ho_cort()`](https://ggsegverse.github.io/ggsegHO/reference/ho_cort.md)
+  and
+  [`hoSub()`](https://ggsegverse.github.io/ggsegHO/reference/ggsegHO-deprecated.md)
+  is now
+  [`ho_sub()`](https://ggsegverse.github.io/ggsegHO/reference/ho_sub.md).
+  The old names still work and return the same atlas, with a deprecation
+  warning.
+
+### Harvard-Oxford Atlas 2.0
+
+- [`ho2_sub()`](https://ggsegverse.github.io/ggsegHO/reference/ho2_sub.md)
+  is rebuilt on a **grey-brain anatomical context**, the same route
+  [`ho_sub()`](https://ggsegverse.github.io/ggsegHO/reference/ho_sub.md)
+  takes: the parcels are embedded in the fsaverage5 `aseg` through
+  `ggseg.extra::prepare_subcortical_mni152()`, the slice positions come
+  from `subcortical_slabs()` rather than being hard-coded, and the
+  surrounding cortex, white matter, cerebellum and brain-stem are drawn
+  as grey context. Previously the structures floated on an empty canvas
+  across 12 cramped views.
+
+- [`ho2_cereb()`](https://ggsegverse.github.io/ggsegHO/reference/ho2_cereb.md)
+  is rebuilt the same way, replacing the aseg cerebellum. It previously
+  drew as a single undifferentiated mass, and its four structures
+  carried doubled-up labels (`left_Cerebellar_Cortex_Left`); they are
+  now named once, from the published HOA-2 lookup table.
+
+- Both keep the colours the HOA-2 authors distribute, in which a
+  structure and its contralateral twin share a colour.
+
+- The build scripts for all five atlases are now in `data-raw/`. The
+  HOA-2 scripts had never been committed, so those atlases could not be
+  reproduced from the repository.
+
 ## ggsegHO 2.0.2
 
 - `hoSub` now renders on a **grey-brain anatomical context**. The
