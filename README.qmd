@@ -21,7 +21,7 @@ knitr::opts_chunk$set(
 
 <!-- badges: start -->
 [![R-CMD-check](https://github.com/ggsegverse/ggsegHO/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/ggsegverse/ggsegHO/actions/workflows/R-CMD-check.yaml)
-[![r-universe](https://ggseg.r-universe.dev/badges/ggsegHO)](https://ggseg.r-universe.dev/ggsegHO)
+[![r-universe](https://ggsegverse.r-universe.dev/badges/ggsegHO)](https://ggsegverse.r-universe.dev/ggsegHO)
 <!-- badges: end -->
 
 Harvard-Oxford cortical, subcortical, and cerebellar atlases for the
@@ -31,13 +31,13 @@ the Harvard-Oxford Atlas 2.0 (HOA-2).
 ## Installation
 
 We recommend installing the ggseg-atlases through the ggseg
-[r-universe](https://ggseg.r-universe.dev/ui#builds):
+[r-universe](https://ggsegverse.r-universe.dev/#builds):
 
 ```{r}
 #| label: install-r-universe
 #| eval: false
 options(repos = c(
-  ggseg = "https://ggseg.r-universe.dev",
+  ggsegverse = "https://ggsegverse.r-universe.dev",
   CRAN = "https://cloud.r-project.org"
 ))
 
@@ -58,14 +58,14 @@ pak::pak("ggsegverse/ggsegHO")
 library(ggseg)
 library(ggsegHO)
 
-plot(hoCort())
+plot(ho_cort())
 ```
 
 ## Harvard-Oxford subcortical
 
 ```{r}
 #| label: ho-sub
-plot(hoSub())
+plot(ho_sub())
 ```
 
 ## HOA-2 cortical

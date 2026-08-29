@@ -28,11 +28,11 @@ Neuroanatomy 16:1035420.
 Other ggseg_atlases: 
 \code{\link{ho2_cereb}()},
 \code{\link{ho2_cort}()},
-\code{\link{hoCort}()},
-\code{\link{hoSub}()}
+\code{\link{ho_cort}()},
+\code{\link{ho_sub}()}
 
 Other subcortical_atlases: 
-\code{\link{hoSub}()}
+\code{\link{ho_sub}()}
 }
 \concept{ggseg_atlases}
 \concept{subcortical_atlases}

@@ -16,3 +16,5 @@ data-raw/**/*.mgz
 *.mgz
 *.mat
 data-raw/hoSub/
+data-raw/ho/
+data-raw/ho2/

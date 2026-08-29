@@ -16,17 +16,17 @@
 #' @import ggseg.formats
 #' @export
 #' @examples
-#' hoCort()
-#' plot(hoCort())
-hoCort <- function() .hoCort
+#' ho_cort()
+#' plot(ho_cort())
+ho_cort <- function() .ho_cort
 
 
 #' Harvard-Oxford Subcortical Atlas
 #'
 #' Subcortical segmentation from the Harvard-Oxford atlas
-#' distributed with FSL. Contains 2D polygon geometry for
-#' [ggseg::geom_brain()] and 3D mesh data for
-#' [ggseg3d::ggseg3d()].
+#' distributed with FSL, drawn on a grey-brain anatomical context.
+#' Contains 2D polygon geometry for [ggseg::geom_brain()] and
+#' 3D mesh data for [ggseg3d::ggseg3d()].
 #'
 #' @family ggseg_atlases
 #' @family subcortical_atlases
@@ -38,6 +38,6 @@ hoCort <- function() .hoCort
 #' @return A [ggseg.formats::ggseg_atlas] object (subcortical).
 #' @export
 #' @examples
-#' hoSub()
-#' plot(hoSub())
-hoSub <- function() .hoSub
+#' ho_sub()
+#' plot(ho_sub())
+ho_sub <- function() .ho_sub
