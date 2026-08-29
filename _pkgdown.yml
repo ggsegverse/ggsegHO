@@ -1,4 +1,4 @@
-url: https://ggseg.github.io/ggsegHO/
+url: https://ggsegverse.github.io/ggsegHO/
 
 template:
   bootstrap: 5
@@ -31,7 +31,7 @@ navbar:
   components:
     github:
       icon: fa-github
-      href: https://github.com/ggseg/ggsegHO
+      href: https://github.com/ggsegverse/ggsegHO
       aria-label: GitHub
 
 reference:
@@ -39,3 +39,8 @@ reference:
     desc: Brain atlases bundled in this package
     contents:
       - has_concept("ggseg_atlases")
+
+  - title: Deprecated
+    desc: Former names, kept working for one release cycle
+    contents:
+      - ggsegHO-deprecated

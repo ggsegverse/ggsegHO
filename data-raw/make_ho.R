@@ -139,10 +139,10 @@ ho <- create_wholebrain_from_volume(
 
 # --- Post-processing: smooth and simplify outside the pipeline ---
 
-.hoCort <- ho$cortical
-.hoCort$core$region <- gsub("^[lr]h_", "", .hoCort$core$label)
-.hoCort <- .hoCort |>
-  atlas_smooth(smoothness = 5) |>
+.ho_cort <- ho$cortical
+.ho_cort$core$region <- gsub("^[lr]h_", "", .ho_cort$core$label)
+.ho_cort <- .ho_cort |>
+  atlas_smooth(smoothness = 1) |>
   atlas_simplify(keep = 0.3)
 
 # --- Subcortical on grey-brain anatomical context ---
@@ -212,7 +212,7 @@ sub_slabs <- subcortical_slabs(
 )
 ho_sub_raw <- create_subcortical_from_volume(
   input_volume = merged,
-  atlas_name = "hoSub",
+  atlas_name = "ho_sub",
   output_dir = "data-raw",
   slabs = sub_slabs,
   dilate = 2L,
@@ -223,19 +223,20 @@ focus_re <- paste0(
   "Thalamus|Caudate|Putamen|Pallidum|Hippocampus|Amygdala|",
   "Accumbens|Brain-Stem"
 )
-.hoSub <- ho_sub_raw |>
+.ho_sub <- ho_sub_raw |>
   aseg_context(focus = focus_re, match_on = "label") |>
   atlas_view_gather() |>
-  atlas_smooth(smoothness = 2, exclude = "^cortex") |>
-  atlas_smooth(smoothness = 5, labels = "^cortex") |>
+  atlas_smooth(smoothness = 0.4, exclude = "^cortex") |>
+  atlas_smooth(smoothness = 1, labels = "^cortex") |>
   atlas_smooth(keep = 0.2)
 
-cat("Cortical regions:", nrow(.hoCort$core), "\n")
-cat("Subcortical regions:", nrow(.hoSub$core), "\n")
+cat("Cortical regions:", nrow(.ho_cort$core), "\n")
+cat("Subcortical regions:", nrow(.ho_sub$core), "\n")
 
 # --- Save ---
-# Pull in the ho2 variants built by make_ho2.R so rebuilding ho does not drop
-# them from sysdata; freshly built .hoCort / .hoSub take precedence.
+# Pull in the HOA-2 atlases built by the make_ho2_* scripts so rebuilding the
+# FSL atlases does not drop them from sysdata; freshly built .ho_cort /
+# .ho_sub take precedence.
 if (file.exists("R/sysdata.rda")) {
   prev <- new.env()
   load("R/sysdata.rda", envir = prev)
