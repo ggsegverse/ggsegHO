@@ -26,7 +26,6 @@ Neuroanatomy 16:1035420.
 }
 \seealso{
 Other ggseg_atlases: 
-\code{\link{ho2_cereb}()},
 \code{\link{ho2_sub}()},
 \code{\link{ho_cort}()},
 \code{\link{ho_sub}()}

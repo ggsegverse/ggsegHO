@@ -26,7 +26,6 @@ Makris, et al. (2006) Schizophrenia research
 }
 \seealso{
 Other ggseg_atlases: 
-\code{\link{ho2_cereb}()},
 \code{\link{ho2_cort}()},
 \code{\link{ho2_sub}()},
 \code{\link{ho_cort}()}

@@ -22,10 +22,17 @@ ho2_cort <- function() .ho2_cort
 
 #' Harvard-Oxford Atlas 2.0 Subcortical
 #'
-#' Subcortical segmentation with 19 structures from the
-#' Harvard-Oxford Atlas 2.0 (HOA-2), based on 100 HCP subjects.
-#' Contains 2D polygon geometry for [ggseg::geom_brain()] and
-#' 3D mesh data for [ggseg3d::ggseg3d()].
+#' Subcortical segmentation with 23 structures from the
+#' Harvard-Oxford Atlas 2.0 (HOA-2), based on 100 HCP subjects: the
+#' deep grey structures, the brain-stem, and the cerebellum split into
+#' grey and white matter. Contains 2D polygon geometry for
+#' [ggseg::geom_brain()] and 3D mesh data for [ggseg3d::ggseg3d()].
+#'
+#' HOA-2 divides the cerebellum into cortex and white matter only, which
+#' is a tissue segmentation like the rest of the subcortical volume
+#' rather than a cerebellar parcellation, so it belongs to this atlas.
+#' For a parcellated cerebellum see the SUIT and Buckner atlases in
+#' `ggsegCerebellum`.
 #'
 #' @family ggseg_atlases
 #' @family subcortical_atlases
@@ -40,24 +47,3 @@ ho2_cort <- function() .ho2_cort
 #' ho2_sub()
 #' plot(ho2_sub())
 ho2_sub <- function() .ho2_sub
-
-
-#' Harvard-Oxford Atlas 2.0 Cerebellar
-#'
-#' Cerebellar segmentation from the Harvard-Oxford Atlas 2.0
-#' (HOA-2), including cerebellar cortex and white matter.
-#' Contains 2D polygon geometry for [ggseg::geom_brain()].
-#'
-#' @family ggseg_atlases
-#' @family cerebellar_atlases
-#'
-#' @references Rushmore RJ, et al. (2022). Frontiers in
-#'   Neuroanatomy 16:1035420.
-#'   (\doi{10.3389/fnana.2022.1035420})
-#'
-#' @return A [ggseg.formats::ggseg_atlas] object (cerebellar).
-#' @export
-#' @examples
-#' ho2_cereb()
-#' plot(ho2_cereb())
-ho2_cereb <- function() .ho2_cereb

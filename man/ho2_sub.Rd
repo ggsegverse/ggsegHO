@@ -10,10 +10,18 @@ ho2_sub()
 A \link[ggseg.formats:ggseg_atlas]{ggseg.formats::ggseg_atlas} object (subcortical).
 }
 \description{
-Subcortical segmentation with 19 structures from the
-Harvard-Oxford Atlas 2.0 (HOA-2), based on 100 HCP subjects.
-Contains 2D polygon geometry for \code{\link[ggseg:ggbrain]{ggseg::geom_brain()}} and
-3D mesh data for \code{\link[ggseg3d:ggseg3d]{ggseg3d::ggseg3d()}}.
+Subcortical segmentation with 23 structures from the
+Harvard-Oxford Atlas 2.0 (HOA-2), based on 100 HCP subjects: the
+deep grey structures, the brain-stem, and the cerebellum split into
+grey and white matter. Contains 2D polygon geometry for
+\code{\link[ggseg:ggbrain]{ggseg::geom_brain()}} and 3D mesh data for \code{\link[ggseg3d:ggseg3d]{ggseg3d::ggseg3d()}}.
+}
+\details{
+HOA-2 divides the cerebellum into cortex and white matter only, which
+is a tissue segmentation like the rest of the subcortical volume
+rather than a cerebellar parcellation, so it belongs to this atlas.
+For a parcellated cerebellum see the SUIT and Buckner atlases in
+\code{ggsegCerebellum}.
 }
 \examples{
 ho2_sub()
@@ -26,7 +34,6 @@ Neuroanatomy 16:1035420.
 }
 \seealso{
 Other ggseg_atlases: 
-\code{\link{ho2_cereb}()},
 \code{\link{ho2_cort}()},
 \code{\link{ho_cort}()},
 \code{\link{ho_sub}()}

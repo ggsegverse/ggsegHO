@@ -60,6 +60,7 @@ describe("deprecated camelCase names", {
     expect_snapshot(x <- hoSub())
     expect_identical(x, ho_sub())
   })
+
 })
 
 describe("ho2_cort atlas", {
@@ -91,45 +92,17 @@ describe("ho2_sub atlas", {
     expect_true(ggseg.formats::is_ggseg_atlas(ho2_sub()))
   })
 
-  it("keeps the 19 published HOA-2 subcortical structures", {
-    expect_length(ggseg.formats::atlas_labels(ho2_sub()), 19)
+  it("keeps the 23 published HOA-2 structures", {
+    expect_length(ggseg.formats::atlas_labels(ho2_sub()), 23)
   })
 
-  it("draws the structures inside grey anatomical context", {
-    # Context geometry is not part of core, so it shows up in the geometry
-    # rather than in atlas_labels().
-    drawn <- ggseg.formats::atlas_geom(ho2_sub())$label
-    expect_true("cortex" %in% drawn)
-    expect_true(any(grepl("Cerebellum", drawn)))
-  })
-
-  it("draws each view once", {
-    expect_length(ggseg.formats::atlas_views(ho2_sub()), 6)
-  })
-
-  it("renders with ggseg", {
-    expect_doppelganger(
-      "ho2_sub-2d",
-      ggseg::brain_test_plot(ho2_sub(), position = ggseg::position_brain())
-    )
-  })
-})
-
-describe("ho2_cereb atlas", {
-  it("is a ggseg_atlas", {
-    expect_s3_class(ho2_cereb(), "ggseg_atlas")
-    expect_s3_class(ho2_cereb(), "cerebellar_atlas")
-  })
-
-  it("is valid", {
-    expect_true(ggseg.formats::is_ggseg_atlas(ho2_cereb()))
-  })
-
-  it("names each cerebellar structure once", {
-    labels <- ggseg.formats::atlas_labels(ho2_cereb())
-    focus <- grep("Cerebellar", labels, value = TRUE)
+  it("includes the cerebellar grey/white split", {
     expect_setequal(
-      focus,
+      grep(
+        "Cerebellar",
+        ggseg.formats::atlas_labels(ho2_sub()),
+        value = TRUE
+      ),
       c(
         "Cerebellar_Cortex_Left",
         "Cerebellar_Cortex_Right",
@@ -139,10 +112,21 @@ describe("ho2_cereb atlas", {
     )
   })
 
+  it("draws the structures inside grey anatomical context", {
+    # Context geometry is not part of core, so it shows up in the geometry
+    # rather than in atlas_labels().
+    drawn <- ggseg.formats::atlas_geom(ho2_sub())$label
+    expect_true("cortex" %in% drawn)
+  })
+
+  it("draws each view once", {
+    expect_length(ggseg.formats::atlas_views(ho2_sub()), 7)
+  })
+
   it("renders with ggseg", {
     expect_doppelganger(
-      "ho2_cereb-2d",
-      ggseg::brain_test_plot(ho2_cereb(), position = ggseg::position_brain())
+      "ho2_sub-2d",
+      ggseg::brain_test_plot(ho2_sub(), position = ggseg::position_brain())
     )
   })
 })
