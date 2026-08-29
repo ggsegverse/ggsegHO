@@ -4,15 +4,17 @@
 \alias{ggsegHO-deprecated}
 \alias{hoCort}
 \alias{hoSub}
-\title{Atlases renamed to snake_case}
+\alias{ho2_cereb}
+\title{Deprecated atlases}
 \usage{
 hoCort()
 
 hoSub()
+
+ho2_cereb()
 }
 \value{
-The renamed atlas, invisibly identical to what the new name
-returns.
+The atlas that replaced the deprecated one.
 }
 \description{
 \ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}
@@ -25,6 +27,12 @@ ggsegverse:
 \item \code{hoSub()} is now \code{\link[=ho_sub]{ho_sub()}}
 }
 
-The old names still return the same atlas, with a warning.
+\code{ho2_cereb()} is now part of \code{\link[=ho2_sub]{ho2_sub()}}. HOA-2 divides the cerebellum
+into grey and white matter only, which is a tissue segmentation like the
+rest of the subcortical volume rather than a cerebellar parcellation, so
+the four structures are drawn alongside the deep grey ones instead of in
+an atlas of their own.
+
+The old names return the atlas that replaced them, with a warning.
 }
 \keyword{internal}
