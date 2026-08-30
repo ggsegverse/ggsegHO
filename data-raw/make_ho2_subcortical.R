@@ -111,16 +111,17 @@ merged <- prepare_subcortical_mni152(
   output_file = file.path(work_dir, "ho2_sub_in_aseg.nii.gz")
 )
 
-# A sagittal slab alongside the axial and coronal ones: the cerebellum sits
-# low and posterior, and reads far better cut along the midline than it does
-# in an axial slice chosen for the deep grey structures.
-slabs <- subcortical_slabs(
-  merged$volume,
-  labels = ids,
-  coronal = 3,
-  axial = 3,
-  sagittal = 1,
-  pad = 2
+# Four slabs, fixed rather than derived, because the derived set has two
+# problems here. It returns seven, which crowds the row; and its single
+# sagittal cut spans the whole head (x 75-181, with the midline at 129), so
+# both hemispheres flatten onto one panel and every left structure is drawn
+# underneath its right twin - the left caudate came out with 8% of it
+# visible. Cutting the sagittal on one side of the midline fixes that.
+slabs <- rbind(
+  data.frame(name = "axial_1", type = "axial", start = 92, end = 120),
+  data.frame(name = "axial_2", type = "axial", start = 121, end = 151),
+  data.frame(name = "coronal_1", type = "coronal", start = 114, end = 153),
+  data.frame(name = "sagittal_1", type = "sagittal", start = 78, end = 128)
 )
 
 raw <- create_subcortical_from_volume(
@@ -129,7 +130,7 @@ raw <- create_subcortical_from_volume(
   output_dir = work_dir,
   slabs = slabs,
   dilate = 2L,
-  skip_existing = TRUE,
+  skip_existing = FALSE,
   cleanup = FALSE
 )
 
@@ -142,6 +143,19 @@ raw <- create_subcortical_from_volume(
   atlas_smooth(smoothness = 0.4, exclude = "^cortex") |>
   atlas_smooth(smoothness = 1, labels = "^cortex") |>
   atlas_smooth(keep = 0.2)
+
+# geom_brain() paints the rows in order, so the last one lands on top. Sorting
+# by structure with the two sides adjacent keeps a structure at the same depth
+# as its contralateral twin; the pipeline's own order had Thalamus_Right last
+# and Thalamus_Left twelve rows earlier, which is why the right thalamus sat
+# in front of the pink ventral diencephalon and the left one behind it.
+draw_order <- function(atlas, context = "^cortex|Cerebellum-|Optic-Chiasm") {
+  labels <- atlas_geom(atlas)$label
+  is_context <- grepl(context, labels)
+  order(!is_context, sub("_(Left|Right)$", "", labels), labels)
+}
+
+.ho2_sub$data$geom <- atlas_geom(.ho2_sub)[draw_order(.ho2_sub), ]
 
 cli::cli_alert_success(
   "{length(atlas_labels(.ho2_sub))} structures in \\

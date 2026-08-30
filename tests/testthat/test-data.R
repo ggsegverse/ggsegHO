@@ -60,7 +60,6 @@ describe("deprecated camelCase names", {
     expect_snapshot(x <- hoSub())
     expect_identical(x, ho_sub())
   })
-
 })
 
 describe("ho2_cort atlas", {
@@ -119,8 +118,21 @@ describe("ho2_sub atlas", {
     expect_true("cortex" %in% drawn)
   })
 
+  it("gives a structure and its twin the same depth", {
+    # geom_brain() paints rows in order, so a structure and its contralateral
+    # twin must be adjacent or one will be drawn over and the other under the
+    # same neighbour.
+    labels <- ggseg.formats::atlas_geom(ho2_sub())$label
+    paired <- grep("_(Left|Right)$", labels, value = TRUE)
+    structure_of <- sub("_(Left|Right)$", "", paired)
+    expect_identical(
+      rle(structure_of)$lengths,
+      rep(2L, length(unique(structure_of)))
+    )
+  })
+
   it("draws each view once", {
-    expect_length(ggseg.formats::atlas_views(ho2_sub()), 7)
+    expect_length(ggseg.formats::atlas_views(ho2_sub()), 4)
   })
 
   it("renders with ggseg", {
