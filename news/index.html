@@ -52,6 +52,7 @@
 </li>
 <li><p>The atlas keeps the colours the HOA-2 authors distribute, in which a structure and its contralateral twin share a colour.</p></li>
 <li><p><strong>The sagittal view now shows one hemisphere.</strong> It previously spanned the whole head, so both hemispheres flattened onto the same panel and every left structure was drawn underneath its right twin — the left caudate came out with 8% of it visible.</p></li>
+<li><p><strong>The panels are grouped by plane</strong> - two axial, then the coronal, then the sagittal. <code>atlas_view_gather()</code> now leaves the geometry rows in layout order (ggseg.formats 0.0.4.9004), and <code><a href="https://ggsegverse.github.io/ggseg/reference/ggbrain.html" class="external-link">ggseg::geom_brain()</a></code> follows them.</p></li>
 <li><p><strong>Structures are drawn in a symmetric order.</strong> <code><a href="https://ggsegverse.github.io/ggseg/reference/ggbrain.html" class="external-link">geom_brain()</a></code> paints rows in order, and the pipeline’s order put <code>Thalamus_Right</code> last and <code>Thalamus_Left</code> twelve rows earlier, so the right thalamus sat in front of the ventral diencephalon and the left one behind it. A structure and its contralateral twin are now adjacent, so they share a depth.</p></li>
 <li><p>The build scripts for every atlas are now in <code>data-raw/</code>. The HOA-2 scripts had never been committed, so those atlases could not be reproduced from the repository.</p></li>
 </ul></div>

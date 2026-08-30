@@ -54,7 +54,7 @@ ho2_sub()
 #> Type: subcortical
 #> Regions: 12
 #> Hemispheres: left, right, NA
-#> Views: sagittal_1, axial_1, axial_2, coronal_1
+#> Views: axial_1, axial_2, coronal_1, sagittal_1
 #> Palette: ✔
 #> Rendering: ✔ ggseg
 #> ✔ ggseg3d (meshes)

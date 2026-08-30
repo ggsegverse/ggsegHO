@@ -50,6 +50,12 @@
   every left structure was drawn underneath its right twin — the left
   caudate came out with 8% of it visible.
 
+- **The panels are grouped by plane** - two axial, then the coronal,
+  then the sagittal. `atlas_view_gather()` now leaves the geometry rows
+  in layout order (ggseg.formats 0.0.4.9004), and
+  [`ggseg::geom_brain()`](https://ggsegverse.github.io/ggseg/reference/ggbrain.html)
+  follows them.
+
 - **Structures are drawn in a symmetric order.**
   [`geom_brain()`](https://ggsegverse.github.io/ggseg/reference/ggbrain.html)
   paints rows in order, and the pipeline’s order put `Thalamus_Right`
