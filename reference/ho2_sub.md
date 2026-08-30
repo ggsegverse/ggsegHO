@@ -3,7 +3,8 @@
 Subcortical segmentation with 23 structures from the Harvard-Oxford
 Atlas 2.0 (HOA-2), based on 100 HCP subjects: the deep grey structures,
 the brain-stem, and the cerebellum split into grey and white matter.
-Contains 2D polygon geometry for
+Drawn in four views: two axial, one coronal and a left-hemisphere
+sagittal. Contains 2D polygon geometry for
 [`ggseg::geom_brain()`](https://ggsegverse.github.io/ggseg/reference/ggbrain.html)
 and 3D mesh data for
 [`ggseg3d::ggseg3d()`](https://ggsegverse.github.io/ggseg3d/reference/ggseg3d.html).
@@ -53,7 +54,7 @@ ho2_sub()
 #> Type: subcortical
 #> Regions: 12
 #> Hemispheres: left, right, NA
-#> Views: axial_1, axial_2, axial_3, coronal_1, sagittal_1, coronal_2, coronal_3
+#> Views: sagittal_1, axial_1, axial_2, coronal_1
 #> Palette: ✔
 #> Rendering: ✔ ggseg
 #> ✔ ggseg3d (meshes)
