@@ -149,13 +149,15 @@ raw <- create_subcortical_from_volume(
 # as its contralateral twin; the pipeline's own order had Thalamus_Right last
 # and Thalamus_Left twelve rows earlier, which is why the right thalamus sat
 # in front of the pink ventral diencephalon and the left one behind it.
-draw_order <- function(atlas, context = "^cortex|Cerebellum-|Optic-Chiasm") {
-  labels <- atlas_geom(atlas)$label
-  is_context <- grepl(context, labels)
-  order(!is_context, sub("_(Left|Right)$", "", labels), labels)
-}
+drawn <- atlas_geom(.ho2_sub)$label
+is_context <- grepl("^cortex|Cerebellum-|Optic-Chiasm", drawn)
 
-.ho2_sub$data$geom <- atlas_geom(.ho2_sub)[draw_order(.ho2_sub), ]
+by_structure <- function(x) x[order(sub("_(Left|Right)$", "", x), x)]
+
+.ho2_sub <- atlas_structure_reorder(
+  .ho2_sub,
+  c(by_structure(drawn[is_context]), by_structure(drawn[!is_context]))
+)
 
 cli::cli_alert_success(
   "{length(atlas_labels(.ho2_sub))} structures in \\

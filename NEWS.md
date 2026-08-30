@@ -36,6 +36,10 @@
   left structure was drawn underneath its right twin — the left caudate came
   out with 8% of it visible.
 
+- **The panels are grouped by plane** - two axial, then the coronal, then the
+  sagittal. `atlas_view_gather()` now leaves the geometry rows in layout
+  order (ggseg.formats 0.0.4.9004), and `ggseg::geom_brain()` follows them.
+
 - **Structures are drawn in a symmetric order.** `geom_brain()` paints rows in
   order, and the pipeline's order put `Thalamus_Right` last and
   `Thalamus_Left` twelve rows earlier, so the right thalamus sat in front of
