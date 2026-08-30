@@ -20,7 +20,7 @@
   HOA-2 divides the cerebellum into grey and white matter only, which is a
   tissue segmentation like the rest of the subcortical volume rather than a
   cerebellar parcellation in the sense of SUIT or Buckner. `ho2_sub()`
-  therefore carries 23 structures across 7 views, including a sagittal cut
+  therefore carries 23 structures across 4 views, including a sagittal cut
   that shows the cerebellum along its length. For a parcellated cerebellum,
   use `ggsegCerebellum`.
 
@@ -30,6 +30,17 @@
 
 - The atlas keeps the colours the HOA-2 authors distribute, in which a
   structure and its contralateral twin share a colour.
+
+- **The sagittal view now shows one hemisphere.** It previously spanned the
+  whole head, so both hemispheres flattened onto the same panel and every
+  left structure was drawn underneath its right twin — the left caudate came
+  out with 8% of it visible.
+
+- **Structures are drawn in a symmetric order.** `geom_brain()` paints rows in
+  order, and the pipeline's order put `Thalamus_Right` last and
+  `Thalamus_Left` twelve rows earlier, so the right thalamus sat in front of
+  the ventral diencephalon and the left one behind it. A structure and its
+  contralateral twin are now adjacent, so they share a depth.
 
 - The build scripts for every atlas are now in `data-raw/`. The HOA-2 scripts
   had never been committed, so those atlases could not be reproduced from the

@@ -25,7 +25,8 @@ ho2_cort <- function() .ho2_cort
 #' Subcortical segmentation with 23 structures from the
 #' Harvard-Oxford Atlas 2.0 (HOA-2), based on 100 HCP subjects: the
 #' deep grey structures, the brain-stem, and the cerebellum split into
-#' grey and white matter. Contains 2D polygon geometry for
+#' grey and white matter. Drawn in four views: two axial, one coronal
+#' and a left-hemisphere sagittal. Contains 2D polygon geometry for
 #' [ggseg::geom_brain()] and 3D mesh data for [ggseg3d::ggseg3d()].
 #'
 #' HOA-2 divides the cerebellum into cortex and white matter only, which

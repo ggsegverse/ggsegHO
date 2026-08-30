@@ -13,7 +13,8 @@ A \link[ggseg.formats:ggseg_atlas]{ggseg.formats::ggseg_atlas} object (subcortic
 Subcortical segmentation with 23 structures from the
 Harvard-Oxford Atlas 2.0 (HOA-2), based on 100 HCP subjects: the
 deep grey structures, the brain-stem, and the cerebellum split into
-grey and white matter. Contains 2D polygon geometry for
+grey and white matter. Drawn in four views: two axial, one coronal
+and a left-hemisphere sagittal. Contains 2D polygon geometry for
 \code{\link[ggseg:ggbrain]{ggseg::geom_brain()}} and 3D mesh data for \code{\link[ggseg3d:ggseg3d]{ggseg3d::ggseg3d()}}.
 }
 \details{
