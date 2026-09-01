@@ -36,12 +36,18 @@
   left structure was drawn underneath its right twin — the left caudate came
   out with 8% of it visible.
 
-- **The grey cortex silhouette keeps its gyri.** `atlas_smooth()` simplifies
-  to `keep = 0.05` unless told otherwise, and the build called it three
-  times, so the silhouette came out on roughly 1% of its vertices and
-  smoothed at full strength - a featureless blob. It now uses the values the
-  bundled `aseg` uses, which lands it at a comparable vertex count (aseg
-  9,119; here 10,205). The atlas grows from 1.46 MB to 1.50 MB.
+- **The grey cortex silhouette keeps its gyri.** It is now taken from a
+  single slice per view rather than projected through the slab
+  (ggseg.extra 1.9.9.9015), which stops every sulcus the slab passes through
+  being unioned shut.
+
+  The build was also over-smoothing it: `atlas_smooth()` simplifies to
+  `keep = 0.05` unless told otherwise and the build called it three times, so
+  the silhouette came out on roughly 1% of its vertices and smoothed at full
+  strength. It now uses the values the bundled `aseg` uses.
+
+  Between the two, the silhouette goes from 653 vertices to 18,865, and the
+  atlas from 1.46 MB to 1.54 MB.
 
 - **The panels are grouped by plane** - two axial, then the coronal, then the
   sagittal. `atlas_view_gather()` now leaves the geometry rows in layout
