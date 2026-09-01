@@ -140,9 +140,13 @@ raw <- create_subcortical_from_volume(
     match_on = "label"
   ) |>
   atlas_view_gather() |>
-  atlas_smooth(smoothness = 0.4, exclude = "^cortex") |>
-  atlas_smooth(smoothness = 1, labels = "^cortex") |>
-  atlas_smooth(keep = 0.2)
+  # atlas_smooth() simplifies to keep = 0.05 unless told otherwise, so the
+  # previous three passes left the cortex silhouette on ~1% of its vertices
+  # and smoothed at full strength: a blob with no gyri. These are the values
+  # the bundled aseg uses, and they land the silhouette at a comparable
+  # vertex count (aseg 9k, here 10k).
+  atlas_smooth(keep = NULL, smoothness = 0.4, exclude = "^cortex") |>
+  atlas_smooth(keep = 0.3, smoothness = 0.4, labels = "^cortex")
 
 # geom_brain() paints the rows in order, so the last one lands on top. Sorting
 # by structure with the two sides adjacent keeps a structure at the same depth
