@@ -39,15 +39,16 @@
 - **The grey cortex silhouette keeps its gyri.** It is now taken from a
   single slice per view rather than projected through the slab
   (ggseg.extra 1.9.9.9015), which stops every sulcus the slab passes through
-  being unioned shut.
+  being unioned shut, and it is no longer dilated - a two-pixel dilation
+  closes the sulci (both ggseg.extra 1.9.9.9015).
 
   The build was also over-smoothing it: `atlas_smooth()` simplifies to
   `keep = 0.05` unless told otherwise and the build called it three times, so
   the silhouette came out on roughly 1% of its vertices and smoothed at full
   strength. It now uses the values the bundled `aseg` uses.
 
-  Between the two, the silhouette goes from 653 vertices to 18,865, and the
-  atlas from 1.46 MB to 1.54 MB.
+  Between them, the silhouette goes from 653 vertices to 17,766, and the
+  atlas from 1.46 MB to 1.55 MB.
 
 - **The panels are grouped by plane** - two axial, then the coronal, then the
   sagittal. `atlas_view_gather()` now leaves the geometry rows in layout
