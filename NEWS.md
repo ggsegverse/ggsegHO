@@ -36,6 +36,27 @@
   left structure was drawn underneath its right twin — the left caudate came
   out with 8% of it visible.
 
+- **The grey cortex silhouette keeps its gyri.** It is now taken from a
+  single slice per view rather than projected through the slab
+  (ggseg.extra 1.9.9.9015), which stops every sulcus the slab passes through
+  being unioned shut; it is no longer dilated, since a two-pixel dilation
+  closes the sulci; and the sagittal slice is now the thinnest section of
+  cortex in the slab rather than the densest, which was a tangential cut
+  through the medial wall and came back as a solid blob (all
+  ggseg.extra 1.9.9.9015).
+
+  The build was also over-smoothing it: `atlas_smooth()` simplifies to
+  `keep = 0.05` unless told otherwise and the build called it three times, so
+  the silhouette came out on roughly 1% of its vertices and smoothed at full
+  strength. It now uses the values the bundled `aseg` uses.
+
+  Between them, the silhouette goes from 653 vertices to 19,553, and the
+  atlas from 1.46 MB to 1.62 MB.
+
+- Dilation of the structures now happens after the pipeline, through
+  `ggseg.extra::atlas_dilate()`, rather than as a build setting. Retuning it
+  no longer means rebuilding the atlas.
+
 - **The panels are grouped by plane** - two axial, then the coronal, then the
   sagittal. `atlas_view_gather()` now leaves the geometry rows in layout
   order (ggseg.formats 0.0.4.9004), and `ggseg::geom_brain()` follows them.
