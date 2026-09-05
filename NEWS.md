@@ -50,8 +50,12 @@
   the silhouette came out on roughly 1% of its vertices and smoothed at full
   strength. It now uses the values the bundled `aseg` uses.
 
-  Between them, the silhouette goes from 653 vertices to 19,188, and the
-  atlas from 1.46 MB to 1.55 MB.
+  Between them, the silhouette goes from 653 vertices to 19,553, and the
+  atlas from 1.46 MB to 1.62 MB.
+
+- Dilation of the structures now happens after the pipeline, through
+  `ggseg.extra::atlas_dilate()`, rather than as a build setting. Retuning it
+  no longer means rebuilding the atlas.
 
 - **The panels are grouped by plane** - two axial, then the coronal, then the
   sagittal. `atlas_view_gather()` now leaves the geometry rows in layout

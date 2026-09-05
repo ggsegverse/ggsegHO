@@ -129,17 +129,22 @@ raw <- create_subcortical_from_volume(
   atlas_name = "ho2_sub",
   output_dir = work_dir,
   slabs = slabs,
-  dilate = 2L,
   skip_existing = FALSE,
   cleanup = FALSE
 )
 
+# Smoothing, dilation and vertex reduction all happen here rather than in the
+# pipeline, so retuning any of them is seconds rather than a rebuild.
+#
+# The structures are grown a little to survive at plotting size; the grey
+# brain is not, since dilating a silhouette closes its sulci.
 .ho2_sub <- raw |>
   aseg_context(
     focus = paste(gsub(" ", ".", lut$label), collapse = "|"),
     match_on = "label"
   ) |>
   atlas_view_gather() |>
+  atlas_dilate(0.6, exclude = "^cortex") |>
   # atlas_smooth() simplifies to keep = 0.05 unless told otherwise, so the
   # previous three passes left the cortex silhouette on ~1% of its vertices
   # and smoothed at full strength: a blob with no gyri. These are the values
