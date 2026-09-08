@@ -145,13 +145,23 @@ raw <- create_subcortical_from_volume(
   ) |>
   atlas_view_gather() |>
   # Post-creation, so retuning any of it is seconds rather than a rebuild.
+  #
   # The structures are grown a little to survive at plotting size; the grey
-  # brain is not, since dilating a silhouette closes its sulci. Only the
-  # silhouette is simplified - it carries most of the vertices, and the deep
-  # structures have none to spare. Simplify before smoothing, or the dropped
-  # vertices put the voxel staircase back.
+  # brain is not, since dilating a silhouette closes its sulci.
+  #
+  # Both get simplified, at different rates: the silhouette can afford more
+  # because its detail is large-scale gyral shape, while the structures are
+  # small and lose recognisable form sooner. Together these halve the atlas
+  # with no visible difference at plotting size - it was 76k vertices for 23
+  # regions, against aseg's 30k for 29, and a heavy atlas is slow to draw.
+  #
+  # Do not push keep lower than ~0.25: rmapshaper stops being able to drop
+  # vertices without breaking topology, and the smoothing pass then adds
+  # more back than the simplification saved. Simplify before smoothing, or
+  # the dropped vertices put the voxel staircase back.
   atlas_dilate(0.6, exclude = "^cortex") |>
-  atlas_simplify(keep = 0.3, labels = "^cortex") |>
+  atlas_simplify(keep = 0.2, labels = "^cortex") |>
+  atlas_simplify(keep = 0.25, exclude = "^cortex") |>
   atlas_smooth(smoothness = 0.4)
 
 # geom_brain() paints the rows in order, so the last one lands on top. Sorting

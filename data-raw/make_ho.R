@@ -232,7 +232,8 @@ focus_re <- paste0(
   aseg_context(focus = focus_re, match_on = "label") |>
   atlas_view_gather() |>
   atlas_dilate(0.6, exclude = "^cortex") |>
-  atlas_simplify(keep = 0.3, labels = "^cortex") |>
+  atlas_simplify(keep = 0.2, labels = "^cortex") |>
+  atlas_simplify(keep = 0.25, exclude = "^cortex") |>
   atlas_smooth(smoothness = 0.4)
 
 cat("Cortical regions:", nrow(.ho_cort$core), "\n")
