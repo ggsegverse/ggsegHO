@@ -40,7 +40,7 @@ Other subcortical_atlases:
 ``` r
 ho_sub()
 #> 
-#> ── hoSub ggseg atlas ───────────────────────────────────────────────────────────
+#> ── ho_sub ggseg atlas ──────────────────────────────────────────────────────────
 #> Type: subcortical
 #> Regions: 8
 #> Hemispheres: left, NA, right
