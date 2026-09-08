@@ -144,14 +144,15 @@ raw <- create_subcortical_from_volume(
     match_on = "label"
   ) |>
   atlas_view_gather() |>
+  # Post-creation, so retuning any of it is seconds rather than a rebuild.
+  # The structures are grown a little to survive at plotting size; the grey
+  # brain is not, since dilating a silhouette closes its sulci. Only the
+  # silhouette is simplified - it carries most of the vertices, and the deep
+  # structures have none to spare. Simplify before smoothing, or the dropped
+  # vertices put the voxel staircase back.
   atlas_dilate(0.6, exclude = "^cortex") |>
-  # atlas_smooth() simplifies to keep = 0.05 unless told otherwise, so the
-  # previous three passes left the cortex silhouette on ~1% of its vertices
-  # and smoothed at full strength: a blob with no gyri. These are the values
-  # the bundled aseg uses, and they land the silhouette at a comparable
-  # vertex count (aseg 9k, here 10k).
-  atlas_smooth(keep = NULL, smoothness = 0.4, exclude = "^cortex") |>
-  atlas_smooth(keep = 0.3, smoothness = 0.4, labels = "^cortex")
+  atlas_simplify(keep = 0.3, labels = "^cortex") |>
+  atlas_smooth(smoothness = 0.4)
 
 # geom_brain() paints the rows in order, so the last one lands on top. Sorting
 # by structure with the two sides adjacent keeps a structure at the same depth

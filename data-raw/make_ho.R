@@ -142,8 +142,8 @@ ho <- create_wholebrain_from_volume(
 .ho_cort <- ho$cortical
 .ho_cort$core$region <- gsub("^[lr]h_", "", .ho_cort$core$label)
 .ho_cort <- .ho_cort |>
-  atlas_smooth(smoothness = 1) |>
-  atlas_simplify(keep = 0.3)
+  atlas_simplify(keep = 0.3) |>
+  atlas_smooth(smoothness = 0.4)
 
 # --- Subcortical on grey-brain anatomical context ---
 # The HO subcortical structures are aseg-equivalent, so rather than let them
@@ -215,7 +215,6 @@ ho_sub_raw <- create_subcortical_from_volume(
   atlas_name = "ho_sub",
   output_dir = "data-raw",
   slabs = sub_slabs,
-  dilate = 2L,
   skip_existing = TRUE,
   cleanup = FALSE
 )
@@ -223,12 +222,18 @@ focus_re <- paste0(
   "Thalamus|Caudate|Putamen|Pallidum|Hippocampus|Amygdala|",
   "Accumbens|Brain-Stem"
 )
+# Smoothing, dilation and vertex reduction all happen here rather than in the
+# pipeline, so retuning any of them is seconds rather than a rebuild.
+#
+# The structures are grown a little to survive at plotting size; the grey
+# brain is not, since dilating a silhouette closes its sulci. Neither is it
+# smoothed at full strength: these are the values the bundled aseg uses.
 .ho_sub <- ho_sub_raw |>
   aseg_context(focus = focus_re, match_on = "label") |>
   atlas_view_gather() |>
-  atlas_smooth(smoothness = 0.4, exclude = "^cortex") |>
-  atlas_smooth(smoothness = 1, labels = "^cortex") |>
-  atlas_smooth(keep = 0.2)
+  atlas_dilate(0.6, exclude = "^cortex") |>
+  atlas_simplify(keep = 0.3, labels = "^cortex") |>
+  atlas_smooth(smoothness = 0.4)
 
 cat("Cortical regions:", nrow(.ho_cort$core), "\n")
 cat("Subcortical regions:", nrow(.ho_sub$core), "\n")
