@@ -170,13 +170,27 @@ raw <- create_subcortical_from_volume(
 # and Thalamus_Left twelve rows earlier, which is why the right thalamus sat
 # in front of the pink ventral diencephalon and the left one behind it.
 drawn <- atlas_geom(.ho2_sub)$label
+is_silhouette <- grepl("^cortex", drawn)
 is_context <- grepl("^cortex|Cerebellum-|Optic-Chiasm", drawn)
 
-by_structure <- function(x) x[order(sub("_(Left|Right)$", "", x), x)]
+# Radix ordering on a case-folded key, so the draw order is the same in every
+# locale rather than following whichever collation the atlas was built in.
+by_structure <- function(x) {
+  x[order(toupper(sub("_(Left|Right)$", "", x)), toupper(x), method = "radix")]
+}
 
+# The silhouette is drawn first: it is the background the rest sits on, and it
+# is the only geometry present in every view, which is where atlas_views()
+# reads the view order from. Lead with anything else and the view it is
+# missing from is pushed to the end of the row - Optic-Chiasm has no axial_2,
+# and leading with it put the second axial cut after the sagittal one.
 .ho2_sub <- atlas_structure_reorder(
   .ho2_sub,
-  c(by_structure(drawn[is_context]), by_structure(drawn[!is_context]))
+  c(
+    by_structure(drawn[is_silhouette]),
+    by_structure(drawn[is_context & !is_silhouette]),
+    by_structure(drawn[!is_context])
+  )
 )
 
 cli::cli_alert_success(

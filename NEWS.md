@@ -1,3 +1,36 @@
+# ggsegHO 2.1.1
+
+## Atlas geometry
+
+All four atlases are rebuilt against the current `ggseg.extra` pipeline.
+
+- **The cortical parcellations no longer have unlabelled holes, and the medial
+  wall is kept as grey context.** `unknown` stays in the geometry, so the
+  surface is still drawn whole, but it is gone from the region table and the
+  palette: `ho_cort()` goes from 98 regions to 96 and `ho2_cort()` from 102 to
+  98. `ho2_cort()` loses two more, `rh_CGa_Left` and `rh_CGp_Left`, which were
+  left-hemisphere labels that had bled across onto the right medial wall.
+
+- **`ho2_cort()` is simplified and smoothed.** It previously shipped straight
+  from the pipeline with stair-stepped voxel edges.
+  `data-raw/make_ho2_cortical.R` now calls `atlas_simplify()` and
+  `atlas_smooth()` after creation, the polish `ho_cort()` already had, which
+  takes it from 30878 vertices to 15477 with smooth boundaries. The small
+  regions survive it, `BFsbcmp` and `SCLC` among them
+  (ggsegverse/ggsegHO#18).
+
+- **The atlases are lighter**, because smoothing no longer inflates the vertex
+  count: `ho_cort()` drops from 36048 points to 13911, `ho_sub()` from 34103
+  to 25307 and `ho2_sub()` from 29229 to 22968, with no visible difference at
+  plotting size.
+
+- **`ho2_sub()`'s draw order is pinned rather than inherited from the build
+  locale.** Structures now sort on a case-folded radix key, so a structure and
+  its contralateral twin keep the same depth wherever the atlas is built, and
+  the grey silhouette is drawn first — it is the background the rest sits on,
+  and it is the only geometry present in all four views, which is where the
+  view order is read from.
+
 # ggsegHO 2.1.0
 
 ## Atlas naming
