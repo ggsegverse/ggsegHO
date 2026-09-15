@@ -149,7 +149,7 @@ cort_atlases <- create_wholebrain_from_volume(
   input_lut = combined_lut[combined_lut$type == "cortical", ],
   atlas_name = "ho2_cortical",
   output_dir = work_dir,
-  regheader = TRUE,
+  registration = "header",
   cortical_labels = combined_lut$idx[combined_lut$type == "cortical"],
   subcortical_labels = integer(0),
   skip_existing = TRUE,
@@ -158,8 +158,15 @@ cort_atlases <- create_wholebrain_from_volume(
   steps = 1:3
 )
 
+# Geometry polishing is a post-creation step, not part of the pipeline, so
+# retuning it is seconds rather than a rebuild. Simplify before smoothing, or
+# the dropped vertices put the voxel staircase back. These are the values
+# ho_cort is built with in make_ho.R.
 .ho2_cort <- cort_atlases$cortical
 .ho2_cort$core$region <- gsub("^[lr]h_", "", .ho2_cort$core$label)
+.ho2_cort <- .ho2_cort |>
+  atlas_simplify(keep = 0.3) |>
+  atlas_smooth(smoothness = 0.4)
 
 cli::cli_alert_success(
   "Cortical: {nrow(.ho2_cort$core)} regions"
