@@ -113,11 +113,9 @@ describe("ho2_sub atlas", {
 
   it("draws the structures inside grey anatomical context", {
     # Context geometry is not part of core, so it shows up in the geometry
-    # rather than in atlas_labels(). The silhouette is named `cortex_` when
-    # the pipeline hands over a ribbon and `cortex` when aseg_context() has
-    # to punch a solid outline hollow, so match the family, not one spelling.
-    drawn <- ggseg.formats::atlas_geom(ho2_sub())$label
-    expect_true(any(grepl("^cortex", drawn)))
+    # rather than in atlas_labels(). Ask the atlas which labels are backdrop
+    # rather than guessing at the silhouette's spelling.
+    expect_gt(length(ggseg.formats::atlas_context(ho2_sub())), 0)
   })
 
   it("gives a structure and its twin the same depth", {

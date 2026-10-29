@@ -139,8 +139,25 @@ raw <- create_subcortical_from_volume(
 # The structures are grown a little to survive at plotting size; the grey
 # brain is not, since dilating a silhouette closes its sulci.
 .ho2_sub <- raw |>
-  aseg_context(
-    focus = paste(gsub(" ", ".", lut$label), collapse = "|"),
+  # `prepare_subcortical_mni152()` declares every `aseg` structure it kept as
+  # context, the cerebral white matter included, so the inside of the cortical
+  # ribbon arrives filled in and reads as a blob. Punch it out, then drop the
+  # structures this atlas does not want behind its parcels. The punch comes
+  # first: remove the white matter and there is nothing left to subtract.
+# Only the cerebral white matter goes; the cerebellar white matter stays, or
+# the cerebellum thins to a sliver instead of reading as a solid structure.
+  ggseg.formats::atlas_region_op(
+    x = "Cerebral-Cortex$",
+    y = "Cerebral-White-Matter$",
+    action = "difference",
+    into = "cortex"
+  ) |>
+  ggseg.formats::atlas_region_remove(
+    paste(
+      "Cerebral-Cortex$", "Cerebral-White-Matter", "WM-hypointensities",
+      "-Ventricle", "-Vent$", "CSF", "choroid-plexus", "vessel", "CC_",
+      sep = "|"
+    ),
     match_on = "label"
   ) |>
   atlas_view_gather() |>
@@ -159,9 +176,9 @@ raw <- create_subcortical_from_volume(
   # vertices without breaking topology, and the smoothing pass then adds
   # more back than the simplification saved. Simplify before smoothing, or
   # the dropped vertices put the voxel staircase back.
-  atlas_dilate(0.6, exclude = "^cortex") |>
-  atlas_simplify(keep = 0.2, labels = "^cortex") |>
-  atlas_simplify(keep = 0.25, exclude = "^cortex") |>
+  atlas_dilate(0.6, exclude = ggseg.formats::context()) |>
+  atlas_simplify(keep = 0.2, labels = ggseg.formats::context()) |>
+  atlas_simplify(keep = 0.25, exclude = ggseg.formats::context()) |>
   atlas_smooth(smoothness = 0.4)
 
 # geom_brain() paints the rows in order, so the last one lands on top. Sorting
@@ -170,13 +187,27 @@ raw <- create_subcortical_from_volume(
 # and Thalamus_Left twelve rows earlier, which is why the right thalamus sat
 # in front of the pink ventral diencephalon and the left one behind it.
 drawn <- atlas_geom(.ho2_sub)$label
-is_context <- grepl("^cortex|Cerebellum-|Optic-Chiasm", drawn)
+is_context <- drawn %in% ggseg.formats::atlas_context(.ho2_sub)
+is_silhouette <- drawn == "cortex"
 
-by_structure <- function(x) x[order(sub("_(Left|Right)$", "", x), x)]
+# Radix ordering on a case-folded key, so the draw order is the same in every
+# locale rather than following whichever collation the atlas was built in.
+by_structure <- function(x) {
+  x[order(toupper(sub("_(Left|Right)$", "", x)), toupper(x), method = "radix")]
+}
 
+# The silhouette is drawn first: it is the background the rest sits on, and it
+# is the only geometry present in every view, which is where atlas_views()
+# reads the view order from. Lead with anything else and the view it is
+# missing from is pushed to the end of the row - Optic-Chiasm has no axial_2,
+# and leading with it put the second axial cut after the sagittal one.
 .ho2_sub <- atlas_structure_reorder(
   .ho2_sub,
-  c(by_structure(drawn[is_context]), by_structure(drawn[!is_context]))
+  c(
+    by_structure(drawn[is_silhouette]),
+    by_structure(drawn[is_context & !is_silhouette]),
+    by_structure(drawn[!is_context])
+  )
 )
 
 cli::cli_alert_success(
